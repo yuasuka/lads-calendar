@@ -202,7 +202,7 @@ function pvHref(p){return p.pvUrl||(YT_CH+"/search?query="+encodeURIComponent(p.
 function pvLink(txt,p,cls){
   var a=el("a",cls||"pvl",txt);a.href=pvHref(p);a.target="_blank";a.rel="noopener noreferrer";
   a.title=p.pvUrl?"開啟官方 PV（YouTube）":"到官方頻道搜尋「"+p.name+"」";
-  a.onclick=function(e){e.stopPropagation()};return a;
+  a.onclick=function(e){e.stopPropagation();e.preventDefault();window.open(a.href,"_blank","noopener,noreferrer");};return a;
 }
 function pvItem(prefix,p,txt){var d=el("div","item");d.appendChild(document.createTextNode(prefix));d.appendChild(pvLink(txt,p));return d}
 function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
