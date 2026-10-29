@@ -253,6 +253,12 @@ def main():
     miss = [p for p in real if not p.get("pvUrl") and 0 <= (today - d(p["start"])).days <= 60 or
             (not p.get("pvUrl") and 0 <= (d(p["start"]) - today).days <= 14)]
     print("[診斷] 近期無連結的池：" + ("、".join(f"{p['name']}({p['start'][5:]})" for p in miss) or "無"))
+    for p in miss:
+        sd = d(p["start"])
+        cand = [v for v in vs if -WINDOW_AFTER - 5 <= (sd - v["published"].date()).days <= WINDOW_BEFORE + 5 and "基準測試" not in v["title"]]
+        print(f"[診斷] 「{p['name']}」（{p['start']}）找不到連結；開池前後的官方影片：" + ("" if cand else "（沒有）"))
+        for v in cand[:10]:
+            print(f"   {v['published']:%m/%d %H:%M} {v['title'][:60]}  [{v['id']}]")
     print("[診斷] 最新 8 支影片標題：")
     for v in vs[:8]:
         print(f"   {v['published']:%m/%d %H:%M} {v['title'][:50]}")
