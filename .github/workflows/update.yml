@@ -1,8 +1,8 @@
 name: Update PV links
 on:
   schedule:
-    - cron: "30 3 * * *"     # 每 6 小時一次（UTC）
-  workflow_dispatch:           # 也可在 Actions 頁面手動執行
+    - cron: "30 3 * * *"       # 每天 UTC 03:30 = 台灣 11:30
+  workflow_dispatch:           # 可在 Actions 頁面手動執行
 permissions:
   contents: write
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Fetch YouTube and update pools.json
         run: python scripts/update_pv.py
         env:
-          YT_API_KEY: ${{ secrets.YT_API_KEY }}   # 沒設定就自動改用 RSS
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
       - name: Commit if changed
         run: |
           if ! git diff --quiet pools.json; then
