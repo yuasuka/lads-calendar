@@ -1,7 +1,7 @@
 name: Update PV links
 on:
   schedule:
-    - cron: "2 3 * * *"     # 每 6 小時一次（UTC）
+    - cron: "30 3 * * *"     # 每 6 小時一次（UTC）
   workflow_dispatch:           # 也可在 Actions 頁面手動執行
 permissions:
   contents: write
