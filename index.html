@@ -77,7 +77,9 @@ dialog label{display:block;margin:8px 0 2px;font-size:12px;color:var(--sub)}
 dialog input,dialog select{width:100%;padding:5px;border:1px solid var(--line);border-radius:8px}
 #adminTools{display:contents}#adminTools[hidden]{display:none}
 .adm{font-size:12px;background:#fff3cd;color:#8a6d00;border:1px solid #ffe69c;border-radius:999px;padding:3px 10px}
-.adm a{color:#8a6d00;margin-left:4px}
+.mini-btn{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid #ffe69c;background:#fff;color:#8a6d00;cursor:pointer}
+.lock{background:none;border:none;font-size:12px;opacity:.35;cursor:pointer;padding:0 4px}.lock:hover{opacity:1}
+#loginDlg{max-width:320px}#loginDlg label{display:block;margin:8px 0 2px;font-size:12px;color:var(--sub)}#loginDlg input{width:100%;padding:6px;border:1px solid var(--line);border-radius:8px}
 footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
 </style>
 </head>
@@ -99,7 +101,7 @@ footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
     <button id="addBtn">＋ 新增／補 PV</button>
     <button id="reload">重新載入資料</button>
     <button id="pick">選取 pools.json</button><input type="file" id="file" accept=".json,application/json" hidden>
-    <span class="adm">管理模式 <a href="?admin=0" id="exitAdmin">離開</a></span>
+    <span class="adm">管理模式 <button type="button" id="exitAdmin" class="mini-btn">登出</button> <button type="button" id="pwBtn" class="mini-btn">改密碼</button></span>
   </span>
 </div>
 <div class="filters" id="filters"></div>
@@ -109,7 +111,15 @@ footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
   <aside class="card side" id="side"></aside>
 </div>
 
-<footer id="foot"></footer>
+<footer><span id="foot"></span> <button type="button" id="lockBtn" class="lock" title="管理員登入" aria-label="管理員登入">🔒</button></footer>
+<dialog id="loginDlg">
+  <form method="dialog" id="loginForm">
+    <b>管理員登入</b>
+    <label for="loginPw">密碼</label><input id="loginPw" type="password" autocomplete="current-password">
+    <div id="loginMsg" class="muted" aria-live="polite" style="min-height:18px;margin-top:6px"></div>
+    <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end"><button type="button" id="loginCancel">取消</button><button id="loginOk" class="on" value="ok">登入</button></div>
+  </form>
+</dialog>
 
 <dialog id="dlg">
   <form method="dialog" id="form">
@@ -144,19 +154,37 @@ var EXTRA_KEY = "lads_calendar_extra_v1";
 var BASE_KEY = "lads_calendar_base_v1";
 var YT_CH = "https://www.youtube.com/@LoveandDeepSpace_tw";
 
-/* ============ 管理模式 ============
-   網址加 ?admin=1 進入（會記在這個瀏覽器），?admin=0 離開。
-   這只是「顯示或隱藏管理按鈕」，不是密碼保護；按鈕改的資料也只存在操作者自己的瀏覽器，不會影響其他訪客。
-   真正會改變所有人畫面的，只有 GitHub 上的 pools.json（只有倉庫擁有者能改）。 */
-var ADMIN_KEY="lads_calendar_admin_v1";
-var ADMIN=(function(){
-  try{
-    var q=new URLSearchParams(location.search).get("admin");
-    if(q==="1"||q==="true"){localStorage.setItem(ADMIN_KEY,"1");return true}
-    if(q==="0"||q==="false"){localStorage.removeItem(ADMIN_KEY);return false}
-    return localStorage.getItem(ADMIN_KEY)==="1";
-  }catch(e){return false}
-})();
+/* ============ 管理模式（密碼） ============
+   頁尾的 🔒 進入，管理模式工具列的「登出」離開。
+   注意：這是網頁端的簡易閘門，不是真正的安全機制（密碼的雜湊值就寫在這個檔案裡，知道原理的人可以繞過）。
+   它能防止朋友誤按，但不能防止有心人；按鈕改的資料也只存在操作者自己的瀏覽器，不會影響其他訪客。
+   真正會改變所有人畫面的，只有 GitHub 上的 pools.json（只有倉庫擁有者能改）。
+   雜湊值 = SHA-256("lads|" + 密碼)。要換密碼：登入後按「改密碼」，照畫面把新的 ADMIN_HASH 貼回這個檔案。 */
+var ADMIN_HASH="bfae869708e7d5e1f2c24f994126e615e1e7ea8b78e1a9f1bf4cf62e285d8994";
+var ADMIN_KEY="lads_calendar_admin_v2";
+function sha256(str){
+  var utf=unescape(encodeURIComponent(str)),i,j,l=utf.length,w=[];
+  var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  utf+="\x80";while(utf.length%64-56)utf+="\x00";
+  for(i=0;i<utf.length;i++){j=utf.charCodeAt(i);w[i>>2]|=j<<((3-i)%4)*8}
+  w[w.length]=((l*8)/4294967296)|0;w[w.length]=(l*8)|0;
+  function rr(v,n){return (v>>>n)|(v<<(32-n))}
+  for(j=0;j<w.length;){
+    var W=w.slice(j,j+=16),h=H.slice(0),k;
+    for(i=0;i<64;i++){
+      var w15=W[i-15],w2=W[i-2],a=h[0],e=h[4];
+      var t1=h[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&h[5])^(~e&h[6]))+K[i]+(W[i]=(i<16)?W[i]:(W[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+W[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+      var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&h[1])^(a&h[2])^(h[1]&h[2]));
+      h=[(t1+t2)|0].concat(h);h[4]=(h[4]+t1)|0;h.pop();
+    }
+    for(i=0;i<8;i++)H[i]=(H[i]+h[i])|0;
+  }
+  var out="";for(i=0;i<8;i++)for(j=3;j+1;j--){k=(H[i]>>(j*8))&255;out+=(k<16?"0":"")+k.toString(16)}
+  return out;
+}
+function pwHash(pw){return sha256("lads|"+pw)}
+var ADMIN=(function(){try{return localStorage.getItem(ADMIN_KEY)===ADMIN_HASH}catch(e){return false}})();
 var KINDS = ["混池","月卡","日卡","生日","自選","劇情"];
 var NAME = {混池:"混池",月卡:"單人月卡",日卡:"日冕日卡",生日:"生日",自選:"自選五星",劇情:"劇情／免費五星"};
 var WD = ["日","一","二","三","四","五","六"];
@@ -477,6 +505,41 @@ document.getElementById("exportBtn").onclick=function(){
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my_pools.json";a.click();
 };
 }
+
+/* ============ 登入／登出／改密碼 ============ */
+(function(){
+  var lockBtn=document.getElementById("lockBtn"),dlgL=document.getElementById("loginDlg"),pw=document.getElementById("loginPw"),msg=document.getElementById("loginMsg");
+  var fails=0,lockedUntil=0;
+  function openL(){pw.value="";msg.textContent="";if(typeof dlgL.showModal==="function")dlgL.showModal();else dlgL.setAttribute("open","");setTimeout(function(){pw.focus()},30)}
+  function closeL(){dlgL.close?dlgL.close():dlgL.removeAttribute("open")}
+  if(ADMIN){lockBtn.style.display="none";document.getElementById("loginDlg").parentNode.removeChild(dlgL)}
+  else{
+    lockBtn.onclick=openL;
+    document.getElementById("loginCancel").onclick=closeL;
+    document.getElementById("loginOk").onclick=function(e){
+      e.preventDefault();
+      var now=Date.now();
+      if(now<lockedUntil){msg.textContent="請稍候 "+Math.ceil((lockedUntil-now)/1000)+" 秒再試";return}
+      if(pwHash(pw.value)===ADMIN_HASH){
+        try{localStorage.setItem(ADMIN_KEY,ADMIN_HASH)}catch(x){}
+        location.reload();
+      }else{
+        fails++;lockedUntil=now+Math.min(30000,fails*2000);msg.textContent="密碼不正確";pw.value="";pw.focus();
+      }
+    };
+  }
+  var ex=document.getElementById("exitAdmin");
+  if(ex)ex.onclick=function(){try{localStorage.removeItem(ADMIN_KEY)}catch(x){}location.reload()};
+  var pb=document.getElementById("pwBtn");
+  if(pb)pb.onclick=function(){
+    var a=prompt("輸入新密碼（至少 8 碼，不要用你在別處用過的密碼）：");
+    if(a===null)return;
+    if(a.length<8){alert("至少 8 碼");return}
+    var line='var ADMIN_HASH="'+pwHash(a)+'";';
+    try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(line).catch(function(){})}catch(x){}
+    prompt("已產生新的雜湊（已嘗試複製）。到 GitHub 編輯 index.html，把 var ADMIN_HASH=... 那一行換成下面這行，存檔後生效：",line);
+  };
+})();
 
 /* ============ 載入資料（線上 JSON 優先，失敗用內建） ============ */
 function load(){
