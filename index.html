@@ -9,6 +9,7 @@
   --bg:#fbf9fe;--card:#fff;--ink:#4a4458;--sub:#7a7391;--line:#ece6f6;--accent:#7b5ea7;--today:#ff5c8a;
   --n-混池:#c9b6f2;--n-月卡:#a8d1f7;--n-日卡:#b5e3bf;--n-生日:#ffe08a;--n-自選:#d3d8dc;
   --r-混池:#e7defa;--r-月卡:#d6e8fb;--r-日卡:#daf2e0;--r-生日:#fff0c6;--r-自選:#edeff1;
+  --n-劇情:#ffcba4;--r-劇情:#ffe6d3;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;font-size:14px}
@@ -20,13 +21,13 @@ button,select,input{font:inherit;color:var(--ink)}
 button{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px;cursor:pointer}
 button:hover{background:#f3eefc}
 button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.seg{display:inline-flex;gap:0}.seg button{border-radius:0}.seg button:first-child{border-radius:10px 0 0 10px}.seg button:last-child{border-radius:0 10px 10px 0}
+.seg{display:inline-flex}.seg button{border-radius:0}.seg button:first-child{border-radius:10px 0 0 10px}.seg button:last-child{border-radius:0 10px 10px 0}
 .title{font-size:18px;font-weight:700;min-width:120px;text-align:center}
 .filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:0 18px 8px}
 .chip{display:inline-flex;align-items:center;gap:4px;border-radius:8px;padding:2px 8px;font-size:12px;cursor:pointer;border:1px solid transparent;user-select:none}
 .chip.off{opacity:.35;text-decoration:line-through}
 .chip.ghost{background:#fff;border:1px dashed var(--sub);color:var(--sub)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;padding:6px 18px 24px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:14px;padding:6px 18px 24px}
 @media(max-width:900px){.layout{grid-template-columns:1fr}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
 .dow,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
@@ -39,17 +40,15 @@ button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .dn{font-size:12px;font-weight:700;color:var(--sub)}
 .cell.today .dn{color:var(--today)}
 .ev{display:block;font-size:11px;line-height:1.25;border-radius:5px;padding:1px 4px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
-.ev.re{font-style:normal}
 .ev.pred{border:1.5px dashed #8d86a3;background:#fff !important}
-.ev.pv{background:#ffe3ea !important;color:#b3294f;font-weight:700}
-.ev.pv,a.pvl{text-decoration:none}
-a.pvl{color:#b3294f;font-weight:700}a.pvl:hover{text-decoration:underline}
+.ev.pv{background:#ffe3ea !important;color:#b3294f;font-weight:700;text-decoration:none}
 a.ev.pv{cursor:pointer}
 .more{font-size:10px;color:var(--sub);margin-top:2px}
-@media(max-width:640px){.cell{min-height:58px}.ev{font-size:0;height:7px;padding:0;border-radius:4px}.ev.pv{height:7px}.more{font-size:9px}}
+@media(max-width:640px){.cell{min-height:58px}.ev{font-size:0;height:7px;padding:0;border-radius:4px}.more{font-size:9px}}
 .side h3{margin:0 0 6px;font-size:14px;color:var(--accent)}
 .side section{margin-bottom:14px}
-.item{display:flex;gap:6px;align-items:flex-start;margin:5px 0;font-size:13px;line-height:1.35}
+.item{display:flex;gap:6px;align-items:flex-start;margin:5px 0;font-size:13px;line-height:1.4}
+.item .bd{min-width:0}
 .sw{flex:0 0 12px;height:12px;border-radius:4px;margin-top:3px}
 .sw.pred{border:1.5px dashed #8d86a3;background:#fff}
 .muted{color:var(--sub);font-size:12px}
@@ -57,6 +56,11 @@ a.ev.pv{cursor:pointer}
 .tag.live{background:#ffe3ea;color:#b3294f}
 .tag.pvok{background:#e3f6ea;color:#2e8b57}
 .tag.pred{background:#fff;border:1px dashed var(--sub);color:var(--sub)}
+a.pvl{color:#b3294f;font-weight:700;text-decoration:none}
+a.pvl:hover{text-decoration:underline}
+a.pvb{display:inline-block;margin:2px 4px 0 0;padding:1px 8px;border-radius:999px;background:#ffe3ea;color:#b3294f;font-size:12px;font-weight:700;text-decoration:none}
+a.pvb:hover{background:#ffd0dc}
+a.pvb.s{background:#f1ecfa;color:var(--accent)}
 .year{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
 .mini{border:1px solid var(--line);border-radius:10px;padding:6px;cursor:pointer;background:#fff}
 .mini h4{margin:0 0 4px;font-size:13px;text-align:center}
@@ -71,6 +75,9 @@ tr.cur td{background:#fff5f8}
 dialog{border:1px solid var(--line);border-radius:14px;max-width:420px;width:92%}
 dialog label{display:block;margin:8px 0 2px;font-size:12px;color:var(--sub)}
 dialog input,dialog select{width:100%;padding:5px;border:1px solid var(--line);border-radius:8px}
+#adminTools{display:contents}#adminTools[hidden]{display:none}
+.adm{font-size:12px;background:#fff3cd;color:#8a6d00;border:1px solid #ffe69c;border-radius:999px;padding:3px 10px}
+.adm a{color:#8a6d00;margin-left:4px}
 footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
 </style>
 </head>
@@ -88,9 +95,12 @@ footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
   <span class="seg" id="views">
     <button data-v="month" class="on">月</button><button data-v="year">年</button><button data-v="list">清單</button>
   </span>
-  <button id="addBtn">＋ 新增／補 PV</button>
-  <button id="reload">重新載入資料</button>
-  <button id="pick">選取 pools.json</button><input type="file" id="file" accept=".json,application/json" hidden>
+  <span id="adminTools" hidden>
+    <button id="addBtn">＋ 新增／補 PV</button>
+    <button id="reload">重新載入資料</button>
+    <button id="pick">選取 pools.json</button><input type="file" id="file" accept=".json,application/json" hidden>
+    <span class="adm">管理模式 <a href="?admin=0" id="exitAdmin">離開</a></span>
+  </span>
 </div>
 <div class="filters" id="filters"></div>
 
@@ -106,13 +116,14 @@ footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
     <b>新增卡池／補 PV（只存在這個瀏覽器）</b>
     <label>卡池名稱</label><input name="name" required>
     <label>類型</label>
-    <select name="kind"><option>混池</option><option>月卡</option><option>日卡</option><option>生日</option><option>自選</option></select>
+    <select name="kind"><option>混池</option><option>月卡</option><option>日卡</option><option>生日</option><option>自選</option><option>劇情</option></select>
     <label>角色（混池可留空）</label><input name="chars">
     <label><input type="checkbox" name="rerun" style="width:auto"> 復刻</label>
     <label>開池日</label><input type="date" name="start" required>
     <label>截止日</label><input type="date" name="end" required>
     <label>PV 首播日（選填）</label><input type="date" name="pv">
-    <label>PV 時間（選填，如 20:00）</label><input name="pvTime">
+    <label>PV 時間（選填，如 11:00）</label><input name="pvTime">
+    <label>PV 影片網址（選填，多支用空白或換行分隔）</label><input name="pvUrl">
     <label><input type="checkbox" name="pred" style="width:auto"> 這是預測</label>
     <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
       <button type="button" id="exportBtn">匯出我新增的 JSON</button>
@@ -126,40 +137,64 @@ footer{padding:0 18px 20px;color:var(--sub);font-size:12px;line-height:1.6}
 (function(){
 "use strict";
 /* ============ 設定 ============ */
-var DATA_URL = "pools.json";          // 放在網頁同一個資料夾；更新這個檔案，網頁就會自動跟著更新
+var DATA_URL = "pools.json";          // 與網頁放同一個資料夾；更新它，網頁就會跟著更新
 var REFRESH_MS = 30*60*1000;          // 每 30 分鐘重新抓一次
-var EMBEDDED = {"updated": "2026-10-27", "pools": [{"name": "綿綿長夢", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-01-18", "end": "2024-01-26", "pv": null, "pvTime": null, "pred": false, "id": "2024-01-18-0"}, {"name": "晚空微瀾", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-01-27", "end": "2024-02-04", "pv": null, "pvTime": null, "pred": false, "id": "2024-01-27-1"}, {"name": "無人知曉時", "kind": "混池", "rerun": false, "chars": "", "start": "2024-02-05", "end": "2024-02-19", "pv": null, "pvTime": null, "pred": false, "id": "2024-02-05-2"}, {"name": "臨危", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-02-21", "end": "2024-02-29", "pv": null, "pvTime": null, "pred": false, "id": "2024-02-21-3"}, {"name": "此生奇遇", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2024-03-01", "end": "2024-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2024-03-01-4"}, {"name": "眸光映照處", "kind": "混池", "rerun": false, "chars": "", "start": "2024-03-11", "end": "2024-03-23", "pv": null, "pvTime": null, "pred": false, "id": "2024-03-11-5"}, {"name": "潮聲回唱之時", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2024-04-03", "end": "2024-04-17", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-03-6"}, {"name": "燎然升溫", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-04-19", "end": "2024-04-29", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-19-7"}, {"name": "二次撞擊", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-04-30", "end": "2024-05-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-30-8"}, {"name": "銀月流爍夜", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2024-05-13", "end": "2024-05-27", "pv": null, "pvTime": null, "pred": false, "id": "2024-05-13-9"}, {"name": "日色初照", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-05-28", "end": "2024-06-07", "pv": null, "pvTime": null, "pred": false, "id": "2024-05-28-10"}, {"name": "山隱靈蹤", "kind": "日卡", "rerun": false, "chars": "黎深", "start": "2024-06-07", "end": "2024-06-21", "pv": null, "pvTime": null, "pred": false, "id": "2024-06-07-11"}, {"name": "雙影交疊時", "kind": "混池", "rerun": false, "chars": "", "start": "2024-06-25", "end": "2024-07-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-06-25-12"}, {"name": "不設防禁區", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2024-07-15", "end": "2024-08-01", "pv": null, "pvTime": null, "pred": false, "id": "2024-07-15-13"}, {"name": "半透明侵佔", "kind": "混池", "rerun": false, "chars": "", "start": "2024-08-07", "end": "2024-08-27", "pv": null, "pvTime": null, "pred": false, "id": "2024-08-07-14"}, {"name": "一往而深", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2024-08-31", "end": "2024-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2024-08-31-15"}, {"name": "長思入畫", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-09-10", "end": "2024-09-20", "pv": null, "pvTime": null, "pred": false, "id": "2024-09-10-16"}, {"name": "欲攬旖旎色", "kind": "混池", "rerun": false, "chars": "", "start": "2024-09-23", "end": "2024-10-09", "pv": null, "pvTime": null, "pred": false, "id": "2024-09-23-17"}, {"name": "星辰有信", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2024-10-11", "end": "2024-10-18", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-11-18"}, {"name": "熾光淋漓", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2024-10-20", "end": "2024-10-30", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-20-19"}, {"name": "脈脈傾音", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-10-31", "end": "2024-11-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-31-20"}, {"name": "遵命，飼養官", "kind": "混池", "rerun": false, "chars": "", "start": "2024-11-12", "end": "2024-11-30", "pv": null, "pvTime": null, "pred": false, "id": "2024-11-12-21"}, {"name": "龍影隕落處", "kind": "日卡", "rerun": false, "chars": "秦徹", "start": "2024-12-02", "end": "2024-12-16", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-02-22"}, {"name": "銀瀑奏鳴", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-12-18", "end": "2024-12-28", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-18-23"}, {"name": "奔湧至昨夜盡頭", "kind": "混池", "rerun": false, "chars": "", "start": "2024-12-31", "end": "2025-01-20", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-31-24"}, {"name": "觸痛訊號", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2025-01-22", "end": "2025-02-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-01-22-25"}, {"name": "明日無處可逃", "kind": "混池", "rerun": false, "chars": "", "start": "2025-02-10", "end": "2025-02-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-02-10-26"}, {"name": "沉入無盡海", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2025-03-01", "end": "2025-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-01-27"}, {"name": "願緣長", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2025-03-09", "end": "2025-03-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-09-28"}, {"name": "潮聲回唱之時", "kind": "日卡", "rerun": true, "chars": "祁煜", "start": "2025-03-20", "end": "2025-03-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-20-29"}, {"name": "當宇宙陷落", "kind": "日卡", "rerun": false, "chars": "夏以晝", "start": "2025-03-28", "end": "2025-04-11", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-28-30"}, {"name": "至心棲之處", "kind": "生日", "rerun": false, "chars": "秦徹", "start": "2025-04-13", "end": "2025-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2025-04-13-31"}, {"name": "銀月流爍夜", "kind": "日卡", "rerun": true, "chars": "沈星回", "start": "2025-04-21", "end": "2025-04-28", "pv": null, "pvTime": null, "pred": false, "id": "2025-04-21-32"}, {"name": "春天對花所做的事", "kind": "混池", "rerun": false, "chars": "", "start": "2025-04-30", "end": "2025-05-18", "pv": "2025-04-27", "pvTime": "11:20", "pred": false, "id": "2025-04-30-33"}, {"name": "山隱靈蹤", "kind": "日卡", "rerun": true, "chars": "黎深", "start": "2025-05-19", "end": "2025-05-26", "pv": null, "pvTime": null, "pred": false, "id": "2025-05-19-34"}, {"name": "寸寸熱潮", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2025-05-29", "end": "2025-06-07", "pv": null, "pvTime": null, "pred": false, "id": "2025-05-29-35"}, {"name": "無可逃逸夜", "kind": "生日", "rerun": false, "chars": "夏以晝", "start": "2025-06-08", "end": "2025-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2025-06-08-36"}, {"name": "當海湮沒於海", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2025-06-17", "end": "2025-07-01", "pv": null, "pvTime": null, "pred": false, "id": "2025-06-17-37"}, {"name": "於深空見證的", "kind": "混池", "rerun": false, "chars": "", "start": "2025-07-03", "end": "2025-07-22", "pv": null, "pvTime": null, "pred": false, "id": "2025-07-03-38"}, {"name": "沉墜的冠冕", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2025-07-25", "end": "2025-08-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-07-25-39"}, {"name": "盛夏與你與海風", "kind": "混池", "rerun": false, "chars": "", "start": "2025-08-12", "end": "2025-08-31", "pv": null, "pvTime": null, "pred": false, "id": "2025-08-12-40"}, {"name": "以我寄黎明", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2025-08-31", "end": "2025-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2025-08-31-41"}, {"name": "熱意揣度", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2025-09-09", "end": "2025-09-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-09-42"}, {"name": "無人知曉時", "kind": "混池", "rerun": true, "chars": "", "start": "2025-09-19", "end": "2025-09-26", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-19-43"}, {"name": "時與世的邊緣", "kind": "日卡", "rerun": false, "chars": "黎深", "start": "2025-09-25", "end": "2025-10-09", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-25-44"}, {"name": "來自星軌間", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2025-10-11", "end": "2025-10-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-10-11-45"}, {"name": "龍影隕落處", "kind": "日卡", "rerun": true, "chars": "秦徹", "start": "2025-10-20", "end": "2025-10-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-10-20-46"}, {"name": "直到心跳沸騰", "kind": "混池", "rerun": false, "chars": "", "start": "2025-10-29", "end": "2025-11-18", "pv": "2025-10-26", "pvTime": "20:05", "pred": false, "id": "2025-10-29-47"}, {"name": "綿綿長夢", "kind": "月卡", "rerun": true, "chars": "沈星回", "start": "2025-11-13", "end": "2025-11-20", "pv": "2025-11-10", "pvTime": "19:00", "pred": false, "id": "2025-11-13-48"}, {"name": "甜野極馳", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2025-11-21", "end": "2025-11-30", "pv": null, "pvTime": null, "pred": false, "id": "2025-11-21-49"}, {"name": "銀翼安魂地", "kind": "日卡", "rerun": false, "chars": "秦徹", "start": "2025-12-02", "end": "2025-12-16", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-02-50"}, {"name": "晚空微瀾", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2025-12-11", "end": "2025-12-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-11-51"}, {"name": "慵懶共謀", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2025-12-18", "end": "2025-12-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-18-52"}, {"name": "臨危", "kind": "月卡", "rerun": true, "chars": "黎深", "start": "2025-12-24", "end": "2025-12-31", "pv": "2025-12-21", "pvTime": "19:01", "pred": false, "id": "2025-12-24-53"}, {"name": "愛，宇宙，詩王座", "kind": "混池", "rerun": false, "chars": "", "start": "2025-12-31", "end": "2026-01-21", "pv": "2025-12-26", "pvTime": null, "pred": false, "id": "2025-12-31-54"}, {"name": "竊竊私吻", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2026-01-23", "end": "2026-02-01", "pv": "2026-01-21", "pvTime": null, "pred": false, "id": "2026-01-23-55"}, {"name": "當宇宙陷落", "kind": "日卡", "rerun": true, "chars": "夏以晝", "start": "2026-02-02", "end": "2026-02-09", "pv": null, "pvTime": null, "pred": false, "id": "2026-02-02-56"}, {"name": "人間繾綣意", "kind": "混池", "rerun": false, "chars": "", "start": "2026-02-10", "end": "2026-02-27", "pv": "2026-02-05", "pvTime": null, "pred": false, "id": "2026-02-10-57"}, {"name": "步步傾你", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2026-03-01", "end": "2026-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-01-58"}, {"name": "循心赴願", "kind": "生日", "rerun": true, "chars": "祁煜", "start": "2026-03-01", "end": "2026-03-08", "pv": "2026-02-26", "pvTime": "11:45", "pred": false, "id": "2026-03-01-59"}, {"name": "煙火來處", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2026-03-09", "end": "2026-03-18", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-09-60"}, {"name": "眸光映照處", "kind": "混池", "rerun": true, "chars": "", "start": "2026-03-19", "end": "2026-03-27", "pv": "2026-03-17", "pvTime": "20:03", "pred": false, "id": "2026-03-19-61"}, {"name": "萬鬼行絕", "kind": "日卡", "rerun": false, "chars": "夏以晝", "start": "2026-03-28", "end": "2026-04-11", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-28-62"}, {"name": "燎然升溫", "kind": "月卡", "rerun": true, "chars": "沈星回", "start": "2026-04-06", "end": "2026-04-13", "pv": "2026-04-03", "pvTime": "20:03", "pred": false, "id": "2026-04-06-63"}, {"name": "夜雨流明", "kind": "生日", "rerun": false, "chars": "秦徹", "start": "2026-04-13", "end": "2026-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2026-04-13-64"}, {"name": "至心棲之處", "kind": "生日", "rerun": true, "chars": "秦徹", "start": "2026-04-13", "end": "2026-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2026-04-13-65"}, {"name": "當海湮沒於海", "kind": "日卡", "rerun": true, "chars": "祁煜", "start": "2026-04-21", "end": "2026-04-28", "pv": "2026-04-20", "pvTime": "11:00", "pred": false, "id": "2026-04-21-66"}, {"name": "渴慕與浮沉", "kind": "混池", "rerun": false, "chars": "", "start": "2026-04-30", "end": "2026-05-15", "pv": "2026-04-27", "pvTime": "20:45", "pred": false, "id": "2026-04-30-67"}, {"name": "二次撞擊", "kind": "月卡", "rerun": true, "chars": "黎深", "start": "2026-05-08", "end": "2026-05-15", "pv": "2026-05-05", "pvTime": "20:04", "pred": false, "id": "2026-05-08-68"}, {"name": "沉墜的冠冕", "kind": "日卡", "rerun": true, "chars": "沈星回", "start": "2026-05-15", "end": "2026-05-22", "pv": "2026-05-12", "pvTime": "20:19", "pred": false, "id": "2026-05-15-69"}, {"name": "愛貓及喵", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2026-05-22", "end": "2026-05-31", "pv": null, "pvTime": null, "pred": false, "id": "2026-05-22-70"}, {"name": "雙影交疊時", "kind": "混池", "rerun": true, "chars": "", "start": "2026-05-31", "end": "2026-06-08", "pv": "2026-05-28", "pvTime": "20:06", "pred": false, "id": "2026-05-31-71"}, {"name": "萬里皆予你", "kind": "生日", "rerun": false, "chars": "夏以晝", "start": "2026-06-08", "end": "2026-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-06-08-72"}, {"name": "無可逃逸夜", "kind": "生日", "rerun": true, "chars": "夏以晝", "start": "2026-06-08", "end": "2026-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-06-08-73"}, {"name": "一幕一生", "kind": "混池", "rerun": false, "chars": "", "start": "2026-06-17", "end": "2026-07-02", "pv": "2026-06-13", "pvTime": "20:00", "pred": false, "id": "2026-06-17-74"}, {"name": "日色初照", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2026-06-25", "end": "2026-07-02", "pv": "2026-06-22", "pvTime": "19:59", "pred": false, "id": "2026-06-25-75"}, {"name": "時與世的邊緣", "kind": "日卡", "rerun": true, "chars": "黎深", "start": "2026-07-02", "end": "2026-07-09", "pv": "2026-06-29", "pvTime": "20:00", "pred": false, "id": "2026-07-02-76"}, {"name": "耀色隨想", "kind": "自選", "rerun": false, "chars": "五男主(自選3張)", "start": "2026-07-09", "end": "2026-07-24", "pv": null, "pvTime": null, "pred": false, "id": "2026-07-09-77"}, {"name": "欲攬旖旎色", "kind": "混池", "rerun": true, "chars": "", "start": "2026-07-09", "end": "2026-07-17", "pv": null, "pvTime": null, "pred": false, "id": "2026-07-09-78"}, {"name": "夏意湧向", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2026-08-05", "end": "2026-08-14", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-05-79"}, {"name": "破陣子", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2026-08-17", "end": "2026-08-31", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-17-80"}, {"name": "不設防禁區", "kind": "月卡", "rerun": true, "chars": "秦徹", "start": "2026-08-24", "end": "2026-08-31", "pv": "2026-08-22", "pvTime": "11:30", "pred": false, "id": "2026-08-24-81"}, {"name": "塵囂起時", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2026-08-31", "end": "2026-09-07", "pv": "2026-08-28", "pvTime": "11:30", "pred": false, "id": "2026-08-31-82"}, {"name": "至盼如晤", "kind": "生日", "rerun": true, "chars": "黎深", "start": "2026-08-31", "end": "2026-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-31-83"}, {"name": "銀翼安魂地", "kind": "日卡", "rerun": true, "chars": "秦徹", "start": "2026-09-08", "end": "2026-09-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-09-08-84"}, {"name": "如若午夜無眠", "kind": "混池", "rerun": false, "chars": "", "start": "2026-09-22", "end": "2026-10-10", "pv": "2026-09-19", "pvTime": null, "pred": false, "id": "2026-09-22-85"}, {"name": "長思入畫", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2026-10-03", "end": "2026-10-10", "pv": null, "pvTime": null, "pred": false, "id": "2026-10-03-86"}, {"name": "願得此瞬", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2026-10-11", "end": "2026-10-18", "pv": "2026-10-07", "pvTime": null, "pred": false, "id": "2026-10-11-87"}, {"name": "逢光續歲", "kind": "生日", "rerun": true, "chars": "沈星回", "start": "2026-10-11", "end": "2026-10-18", "pv": "2026-10-08", "pvTime": "11:45", "pred": false, "id": "2026-10-11-88"}, {"name": "半透明侵佔", "kind": "混池", "rerun": true, "chars": "", "start": "2026-10-19", "end": "2026-10-27", "pv": "2026-10-16", "pvTime": "20:00", "pred": false, "id": "2026-10-19-89"}, {"name": "馥夜輕漾", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2026-10-27", "end": "2026-11-05", "pv": "2026-10-25", "pvTime": "11:30", "pred": false, "id": "2026-10-27-90"}, {"name": "新日卡", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2026-11-07", "end": "2026-11-20", "pv": null, "pvTime": null, "pred": true, "id": "2026-11-07-91"}, {"name": "熾光淋漓", "kind": "月卡", "rerun": true, "chars": "秦徹", "start": "2026-11-16", "end": "2026-11-23", "pv": null, "pvTime": null, "pred": true, "id": "2026-11-16-92"}, {"name": "遵命，飼養官", "kind": "混池", "rerun": true, "chars": "", "start": "2026-12-03", "end": "2026-12-10", "pv": null, "pvTime": null, "pred": true, "id": "2026-12-03-93"}, {"name": "三週年混池", "kind": "混池", "rerun": false, "chars": "", "start": "2026-12-31", "end": "2027-01-20", "pv": null, "pvTime": null, "pred": true, "id": "2026-12-31-94"}]};              // 內建備援資料（直接雙擊開啟時使用）
+var EMBEDDED = {"updated": "2026-10-27", "pools": [{"name": "綿綿長夢", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-01-18", "end": "2024-01-26", "pv": null, "pvTime": null, "pred": false, "id": "2024-01-18-n-綿綿長夢"}, {"name": "晚空微瀾", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-01-27", "end": "2024-02-04", "pv": null, "pvTime": null, "pred": false, "id": "2024-01-27-n-晚空微瀾"}, {"name": "無人知曉時", "kind": "混池", "rerun": false, "chars": "", "start": "2024-02-05", "end": "2024-02-19", "pv": null, "pvTime": null, "pred": false, "id": "2024-02-05-n-無人知曉時"}, {"name": "臨危", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-02-21", "end": "2024-02-29", "pv": null, "pvTime": null, "pred": false, "id": "2024-02-21-n-臨危"}, {"name": "此生奇遇", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2024-03-01", "end": "2024-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2024-03-01-n-此生奇遇"}, {"name": "眸光映照處", "kind": "混池", "rerun": false, "chars": "", "start": "2024-03-11", "end": "2024-03-23", "pv": null, "pvTime": null, "pred": false, "id": "2024-03-11-n-眸光映照處"}, {"name": "潮聲回唱之時", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2024-04-03", "end": "2024-04-17", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-03-n-潮聲回唱之時"}, {"name": "燎然升溫", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-04-19", "end": "2024-04-29", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-19-n-燎然升溫"}, {"name": "二次撞擊", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-04-30", "end": "2024-05-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-04-30-n-二次撞擊"}, {"name": "銀月流爍夜", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2024-05-13", "end": "2024-05-27", "pv": null, "pvTime": null, "pred": false, "id": "2024-05-13-n-銀月流爍夜"}, {"name": "日色初照", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-05-28", "end": "2024-06-07", "pv": null, "pvTime": null, "pred": false, "id": "2024-05-28-n-日色初照"}, {"name": "山隱靈蹤", "kind": "日卡", "rerun": false, "chars": "黎深", "start": "2024-06-07", "end": "2024-06-21", "pv": null, "pvTime": null, "pred": false, "id": "2024-06-07-n-山隱靈蹤"}, {"name": "雙影交疊時", "kind": "混池", "rerun": false, "chars": "", "start": "2024-06-25", "end": "2024-07-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-06-25-n-雙影交疊時"}, {"name": "不設防禁區", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2024-07-15", "end": "2024-08-01", "pv": null, "pvTime": null, "pred": false, "id": "2024-07-15-n-不設防禁區"}, {"name": "半透明侵佔", "kind": "混池", "rerun": false, "chars": "", "start": "2024-08-07", "end": "2024-08-27", "pv": null, "pvTime": null, "pred": false, "id": "2024-08-07-n-半透明侵佔"}, {"name": "一往而深", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2024-08-31", "end": "2024-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2024-08-31-n-一往而深"}, {"name": "長思入畫", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2024-09-10", "end": "2024-09-20", "pv": null, "pvTime": null, "pred": false, "id": "2024-09-10-n-長思入畫"}, {"name": "欲攬旖旎色", "kind": "混池", "rerun": false, "chars": "", "start": "2024-09-23", "end": "2024-10-09", "pv": null, "pvTime": null, "pred": false, "id": "2024-09-23-n-欲攬旖旎色"}, {"name": "星辰有信", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2024-10-11", "end": "2024-10-18", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-11-n-星辰有信"}, {"name": "熾光淋漓", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2024-10-20", "end": "2024-10-30", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-20-n-熾光淋漓"}, {"name": "脈脈傾音", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2024-10-31", "end": "2024-11-10", "pv": null, "pvTime": null, "pred": false, "id": "2024-10-31-n-脈脈傾音"}, {"name": "遵命，飼養官", "kind": "混池", "rerun": false, "chars": "", "start": "2024-11-12", "end": "2024-11-30", "pv": null, "pvTime": null, "pred": false, "id": "2024-11-12-n-遵命，飼養官"}, {"name": "龍影隕落處", "kind": "日卡", "rerun": false, "chars": "秦徹", "start": "2024-12-02", "end": "2024-12-16", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-02-n-龍影隕落處"}, {"name": "銀瀑奏鳴", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2024-12-18", "end": "2024-12-28", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-18-n-銀瀑奏鳴"}, {"name": "奔湧至昨夜盡頭", "kind": "混池", "rerun": false, "chars": "", "start": "2024-12-31", "end": "2025-01-20", "pv": null, "pvTime": null, "pred": false, "id": "2024-12-31-n-奔湧至昨夜盡頭"}, {"name": "觸痛訊號", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2025-01-22", "end": "2025-02-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-01-22-n-觸痛訊號"}, {"name": "明日無處可逃", "kind": "混池", "rerun": false, "chars": "", "start": "2025-02-10", "end": "2025-02-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-02-10-n-明日無處可逃"}, {"name": "沉入無盡海", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2025-03-01", "end": "2025-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-01-n-沉入無盡海"}, {"name": "願緣長", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2025-03-09", "end": "2025-03-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-09-n-願緣長"}, {"name": "潮聲回唱之時", "kind": "日卡", "rerun": true, "chars": "祁煜", "start": "2025-03-20", "end": "2025-03-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-20-r-潮聲回唱之時"}, {"name": "當宇宙陷落", "kind": "日卡", "rerun": false, "chars": "夏以晝", "start": "2025-03-28", "end": "2025-04-11", "pv": null, "pvTime": null, "pred": false, "id": "2025-03-28-n-當宇宙陷落"}, {"name": "至心棲之處", "kind": "生日", "rerun": false, "chars": "秦徹", "start": "2025-04-13", "end": "2025-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2025-04-13-n-至心棲之處"}, {"name": "銀月流爍夜", "kind": "日卡", "rerun": true, "chars": "沈星回", "start": "2025-04-21", "end": "2025-04-28", "pv": null, "pvTime": null, "pred": false, "id": "2025-04-21-r-銀月流爍夜"}, {"name": "春天對花所做的事", "kind": "混池", "rerun": false, "chars": "", "start": "2025-04-30", "end": "2025-05-18", "pv": "2025-04-27", "pvTime": "11:20", "pred": false, "id": "2025-04-30-n-春天對花所做的事"}, {"name": "山隱靈蹤", "kind": "日卡", "rerun": true, "chars": "黎深", "start": "2025-05-19", "end": "2025-05-26", "pv": null, "pvTime": null, "pred": false, "id": "2025-05-19-r-山隱靈蹤"}, {"name": "寸寸熱潮", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2025-05-29", "end": "2025-06-07", "pv": null, "pvTime": null, "pred": false, "id": "2025-05-29-n-寸寸熱潮"}, {"name": "無可逃逸夜", "kind": "生日", "rerun": false, "chars": "夏以晝", "start": "2025-06-08", "end": "2025-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2025-06-08-n-無可逃逸夜"}, {"name": "當海湮沒於海", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2025-06-17", "end": "2025-07-01", "pv": null, "pvTime": null, "pred": false, "id": "2025-06-17-n-當海湮沒於海"}, {"name": "於深空見證的", "kind": "混池", "rerun": false, "chars": "", "start": "2025-07-03", "end": "2025-07-22", "pv": null, "pvTime": null, "pred": false, "id": "2025-07-03-n-於深空見證的"}, {"name": "沉墜的冠冕", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2025-07-25", "end": "2025-08-08", "pv": null, "pvTime": null, "pred": false, "id": "2025-07-25-n-沉墜的冠冕"}, {"name": "盛夏與你與海風", "kind": "混池", "rerun": false, "chars": "", "start": "2025-08-12", "end": "2025-08-31", "pv": null, "pvTime": null, "pred": false, "id": "2025-08-12-n-盛夏與你與海風"}, {"name": "以我寄黎明", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2025-08-31", "end": "2025-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2025-08-31-n-以我寄黎明"}, {"name": "熱意揣度", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2025-09-09", "end": "2025-09-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-09-n-熱意揣度"}, {"name": "無人知曉時", "kind": "混池", "rerun": true, "chars": "", "start": "2025-09-19", "end": "2025-09-26", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-19-r-無人知曉時"}, {"name": "時與世的邊緣", "kind": "日卡", "rerun": false, "chars": "黎深", "start": "2025-09-25", "end": "2025-10-09", "pv": null, "pvTime": null, "pred": false, "id": "2025-09-25-n-時與世的邊緣"}, {"name": "來自星軌間", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2025-10-11", "end": "2025-10-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-10-11-n-來自星軌間"}, {"name": "龍影隕落處", "kind": "日卡", "rerun": true, "chars": "秦徹", "start": "2025-10-20", "end": "2025-10-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-10-20-r-龍影隕落處"}, {"name": "直到心跳沸騰", "kind": "混池", "rerun": false, "chars": "", "start": "2025-10-29", "end": "2025-11-18", "pv": "2025-10-26", "pvTime": "20:05", "pred": false, "id": "2025-10-29-n-直到心跳沸騰"}, {"name": "綿綿長夢", "kind": "月卡", "rerun": true, "chars": "沈星回", "start": "2025-11-13", "end": "2025-11-20", "pv": "2025-11-10", "pvTime": "19:00", "pred": false, "id": "2025-11-13-r-綿綿長夢"}, {"name": "甜野極馳", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2025-11-21", "end": "2025-11-30", "pv": null, "pvTime": null, "pred": false, "id": "2025-11-21-n-甜野極馳"}, {"name": "銀翼安魂地", "kind": "日卡", "rerun": false, "chars": "秦徹", "start": "2025-12-02", "end": "2025-12-16", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-02-n-銀翼安魂地"}, {"name": "晚空微瀾", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2025-12-11", "end": "2025-12-18", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-11-r-晚空微瀾"}, {"name": "慵懶共謀", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2025-12-18", "end": "2025-12-27", "pv": null, "pvTime": null, "pred": false, "id": "2025-12-18-n-慵懶共謀"}, {"name": "臨危", "kind": "月卡", "rerun": true, "chars": "黎深", "start": "2025-12-24", "end": "2025-12-31", "pv": "2025-12-21", "pvTime": "19:01", "pred": false, "id": "2025-12-24-r-臨危"}, {"name": "愛，宇宙，詩王座", "kind": "混池", "rerun": false, "chars": "", "start": "2025-12-31", "end": "2026-01-21", "pv": "2025-12-26", "pvTime": null, "pred": false, "id": "2025-12-31-n-愛，宇宙，詩王座"}, {"id": "2026-01-02-n-獻給昨日之詩", "name": "獻給昨日之詩（時錮之鑰）", "kind": "劇情", "rerun": false, "chars": "沈星回／祁煜", "start": "2026-01-02", "end": "2026-01-12", "pv": "2025-12-27", "pvTime": null, "pred": false, "pvUrl": "https://www.youtube.com/watch?v=NNocqtsXD8Y", "note": "主線新篇章 1/2 開啟（四章，常駐）；「時錮之鑰」活動期間送 1000 鑽與男主通用服裝。PV 日期依 B站／TapTap（12/27–12/28），台服 YouTube 首播日待確認。"}, {"name": "竊竊私吻", "kind": "月卡", "rerun": false, "chars": "黎深", "start": "2026-01-23", "end": "2026-02-01", "pv": "2026-01-21", "pvTime": null, "pred": false, "id": "2026-01-23-n-竊竊私吻"}, {"name": "當宇宙陷落", "kind": "日卡", "rerun": true, "chars": "夏以晝", "start": "2026-02-02", "end": "2026-02-09", "pv": null, "pvTime": null, "pred": false, "id": "2026-02-02-r-當宇宙陷落"}, {"name": "人間繾綣意", "kind": "混池", "rerun": false, "chars": "", "start": "2026-02-10", "end": "2026-02-27", "pv": "2026-02-05", "pvTime": null, "pred": false, "id": "2026-02-10-n-人間繾綣意"}, {"name": "步步傾你", "kind": "生日", "rerun": false, "chars": "祁煜", "start": "2026-03-01", "end": "2026-03-08", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-01-n-步步傾你"}, {"name": "循心赴願", "kind": "生日", "rerun": true, "chars": "祁煜", "start": "2026-03-01", "end": "2026-03-08", "pv": "2026-02-26", "pvTime": "11:45", "pred": false, "id": "2026-03-01-r-循心赴願"}, {"name": "煙火來處", "kind": "月卡", "rerun": false, "chars": "沈星回", "start": "2026-03-09", "end": "2026-03-18", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-09-n-煙火來處"}, {"name": "眸光映照處", "kind": "混池", "rerun": true, "chars": "", "start": "2026-03-19", "end": "2026-03-27", "pv": "2026-03-17", "pvTime": "20:03", "pred": false, "id": "2026-03-19-r-眸光映照處"}, {"name": "萬鬼行絕", "kind": "日卡", "rerun": false, "chars": "夏以晝", "start": "2026-03-28", "end": "2026-04-11", "pv": null, "pvTime": null, "pred": false, "id": "2026-03-28-n-萬鬼行絕"}, {"name": "燎然升溫", "kind": "月卡", "rerun": true, "chars": "沈星回", "start": "2026-04-06", "end": "2026-04-13", "pv": "2026-04-03", "pvTime": "20:03", "pred": false, "id": "2026-04-06-r-燎然升溫"}, {"name": "夜雨流明", "kind": "生日", "rerun": false, "chars": "秦徹", "start": "2026-04-13", "end": "2026-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2026-04-13-n-夜雨流明"}, {"name": "至心棲之處", "kind": "生日", "rerun": true, "chars": "秦徹", "start": "2026-04-13", "end": "2026-04-20", "pv": null, "pvTime": null, "pred": false, "id": "2026-04-13-r-至心棲之處"}, {"name": "當海湮沒於海", "kind": "日卡", "rerun": true, "chars": "祁煜", "start": "2026-04-21", "end": "2026-04-28", "pv": "2026-04-20", "pvTime": "11:00", "pred": false, "id": "2026-04-21-r-當海湮沒於海"}, {"name": "渴慕與浮沉", "kind": "混池", "rerun": false, "chars": "", "start": "2026-04-30", "end": "2026-05-15", "pv": "2026-04-27", "pvTime": "20:45", "pred": false, "id": "2026-04-30-n-渴慕與浮沉"}, {"name": "二次撞擊", "kind": "月卡", "rerun": true, "chars": "黎深", "start": "2026-05-08", "end": "2026-05-15", "pv": "2026-05-05", "pvTime": "20:04", "pred": false, "id": "2026-05-08-r-二次撞擊"}, {"name": "沉墜的冠冕", "kind": "日卡", "rerun": true, "chars": "沈星回", "start": "2026-05-15", "end": "2026-05-22", "pv": "2026-05-12", "pvTime": "20:19", "pred": false, "id": "2026-05-15-r-沉墜的冠冕"}, {"name": "愛貓及喵", "kind": "月卡", "rerun": false, "chars": "秦徹", "start": "2026-05-22", "end": "2026-05-31", "pv": null, "pvTime": null, "pred": false, "id": "2026-05-22-n-愛貓及喵"}, {"name": "雙影交疊時", "kind": "混池", "rerun": true, "chars": "", "start": "2026-05-31", "end": "2026-06-08", "pv": "2026-05-28", "pvTime": "20:06", "pred": false, "id": "2026-05-31-r-雙影交疊時"}, {"name": "萬里皆予你", "kind": "生日", "rerun": false, "chars": "夏以晝", "start": "2026-06-08", "end": "2026-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-06-08-n-萬里皆予你"}, {"name": "無可逃逸夜", "kind": "生日", "rerun": true, "chars": "夏以晝", "start": "2026-06-08", "end": "2026-06-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-06-08-r-無可逃逸夜"}, {"name": "一幕一生", "kind": "混池", "rerun": false, "chars": "", "start": "2026-06-17", "end": "2026-07-02", "pv": "2026-06-13", "pvTime": "20:00", "pred": false, "id": "2026-06-17-n-一幕一生"}, {"name": "日色初照", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2026-06-25", "end": "2026-07-02", "pv": "2026-06-22", "pvTime": "19:59", "pred": false, "id": "2026-06-25-r-日色初照"}, {"name": "時與世的邊緣", "kind": "日卡", "rerun": true, "chars": "黎深", "start": "2026-07-02", "end": "2026-07-09", "pv": "2026-06-29", "pvTime": "20:00", "pred": false, "id": "2026-07-02-r-時與世的邊緣"}, {"name": "耀色隨想", "kind": "自選", "rerun": false, "chars": "", "start": "2026-07-09", "end": "2026-07-24", "pv": null, "pvTime": null, "pred": false, "id": "2026-07-09-n-耀色隨想"}, {"name": "欲攬旖旎色", "kind": "混池", "rerun": true, "chars": "", "start": "2026-07-09", "end": "2026-07-17", "pv": null, "pvTime": null, "pred": false, "id": "2026-07-09-r-欲攬旖旎色"}, {"id": "2026-07-18-n-心動摯禮", "name": "心動摯禮", "kind": "劇情", "rerun": false, "chars": "黎深", "start": "2026-07-18", "end": "2026-08-02", "pv": null, "pvTime": null, "pred": false, "pvUrl": "https://www.youtube.com/watch?v=YE4vybeGX_s", "note": "免費五星思念「黎深·夕暉凝刻」（累計簽到 7 天領取）。連結是『現已開啟』影片，發布頻道與 PV 首播日待確認。"}, {"name": "夏意湧向", "kind": "月卡", "rerun": false, "chars": "夏以晝", "start": "2026-08-05", "end": "2026-08-14", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-05-n-夏意湧向"}, {"name": "破陣子", "kind": "日卡", "rerun": false, "chars": "祁煜", "start": "2026-08-17", "end": "2026-08-31", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-17-n-破陣子"}, {"name": "不設防禁區", "kind": "月卡", "rerun": true, "chars": "秦徹", "start": "2026-08-24", "end": "2026-08-31", "pv": "2026-08-22", "pvTime": "11:30", "pred": false, "id": "2026-08-24-r-不設防禁區"}, {"name": "塵囂起時", "kind": "生日", "rerun": false, "chars": "黎深", "start": "2026-08-31", "end": "2026-09-07", "pv": "2026-08-28", "pvTime": "11:30", "pred": false, "id": "2026-08-31-n-塵囂起時"}, {"name": "至盼如晤", "kind": "生日", "rerun": true, "chars": "黎深", "start": "2026-08-31", "end": "2026-09-07", "pv": null, "pvTime": null, "pred": false, "id": "2026-08-31-r-至盼如晤"}, {"name": "銀翼安魂地", "kind": "日卡", "rerun": true, "chars": "秦徹", "start": "2026-09-08", "end": "2026-09-15", "pv": null, "pvTime": null, "pred": false, "id": "2026-09-08-r-銀翼安魂地"}, {"id": "2026-09-17-n-你與我的偏航線", "name": "你與我的偏航線", "kind": "劇情", "rerun": false, "chars": "夏以晝", "start": "2026-09-17", "end": "2026-09-27", "pv": "2026-09-14", "pvTime": "11:00", "pred": false, "pvUrl": "https://www.youtube.com/watch?v=jMFmixWKldk", "pvUrls": ["https://www.youtube.com/watch?v=jMFmixWKldk", "https://www.youtube.com/watch?v=lfLXL74GEzY"], "note": "夏以晝主線分線；五星思念「夏以晝·偏航線」免費領（活動名「巡弋新程」）。新主線篇章「無序變局」9/17 開啟；9/28 起永久上架許願商店。秦徹分線預告 11 月更新。"}, {"name": "如若午夜無眠", "kind": "混池", "rerun": false, "chars": "", "start": "2026-09-22", "end": "2026-10-10", "pv": "2026-09-19", "pvTime": null, "pred": false, "id": "2026-09-22-n-如若午夜無眠"}, {"name": "長思入畫", "kind": "月卡", "rerun": true, "chars": "祁煜", "start": "2026-10-03", "end": "2026-10-10", "pv": null, "pvTime": null, "pred": false, "id": "2026-10-03-r-長思入畫"}, {"name": "願得此瞬", "kind": "生日", "rerun": false, "chars": "沈星回", "start": "2026-10-11", "end": "2026-10-18", "pv": "2026-10-07", "pvTime": null, "pred": false, "id": "2026-10-11-n-願得此瞬"}, {"name": "逢光續歲", "kind": "生日", "rerun": true, "chars": "沈星回", "start": "2026-10-11", "end": "2026-10-18", "pv": "2026-10-08", "pvTime": "11:45", "pred": false, "id": "2026-10-11-r-逢光續歲"}, {"name": "半透明侵佔", "kind": "混池", "rerun": true, "chars": "", "start": "2026-10-19", "end": "2026-10-27", "pv": "2026-10-16", "pvTime": "20:00", "pred": false, "id": "2026-10-19-r-半透明侵佔"}, {"name": "馥夜輕漾", "kind": "月卡", "rerun": false, "chars": "祁煜", "start": "2026-10-27", "end": "2026-11-05", "pv": "2026-10-25", "pvTime": "11:30", "pred": false, "id": "2026-10-27-n-馥夜輕漾"}, {"name": "新日卡", "kind": "日卡", "rerun": false, "chars": "沈星回", "start": "2026-11-07", "end": "2026-11-20", "pv": null, "pvTime": null, "pred": true, "id": "2026-11-07-n-新日卡"}, {"name": "熾光淋漓", "kind": "月卡", "rerun": true, "chars": "秦徹", "start": "2026-11-16", "end": "2026-11-23", "pv": null, "pvTime": null, "pred": true, "id": "2026-11-16-r-熾光淋漓"}, {"name": "遵命，飼養官", "kind": "混池", "rerun": true, "chars": "", "start": "2026-12-03", "end": "2026-12-10", "pv": null, "pvTime": null, "pred": true, "id": "2026-12-03-r-遵命，飼養官"}, {"name": "三週年混池", "kind": "混池", "rerun": false, "chars": "", "start": "2026-12-31", "end": "2027-01-20", "pv": null, "pvTime": null, "pred": true, "id": "2026-12-31-n-三週年混池"}], "pvs": [{"id": "yt-WB6KYstXGwE", "title": "《戀與深空》沉浸感實拍PV公開｜2024.01.18 全球心動上線！", "date": "2024-01-17", "time": null, "url": "https://www.youtube.com/watch?v=WB6KYstXGwE", "cat": "版本"}]};              // 內建備援資料（抓不到 pools.json 時使用）
 var EXTRA_KEY = "lads_calendar_extra_v1";
 var BASE_KEY = "lads_calendar_base_v1";
+var YT_CH = "https://www.youtube.com/@LoveandDeepSpace_tw";
 
-var YT_CH = "https://www.youtube.com/@LoveandDeepSpace_tw";   // 官方台灣頻道
-var KINDS = ["混池","月卡","日卡","生日","自選"];
-var NAME = {混池:"混池",月卡:"單人月卡",日卡:"日冕日卡",生日:"生日",自選:"自選五星"};
+/* ============ 管理模式 ============
+   網址加 ?admin=1 進入（會記在這個瀏覽器），?admin=0 離開。
+   這只是「顯示或隱藏管理按鈕」，不是密碼保護；按鈕改的資料也只存在操作者自己的瀏覽器，不會影響其他訪客。
+   真正會改變所有人畫面的，只有 GitHub 上的 pools.json（只有倉庫擁有者能改）。 */
+var ADMIN_KEY="lads_calendar_admin_v1";
+var ADMIN=(function(){
+  try{
+    var q=new URLSearchParams(location.search).get("admin");
+    if(q==="1"||q==="true"){localStorage.setItem(ADMIN_KEY,"1");return true}
+    if(q==="0"||q==="false"){localStorage.removeItem(ADMIN_KEY);return false}
+    return localStorage.getItem(ADMIN_KEY)==="1";
+  }catch(e){return false}
+})();
+var KINDS = ["混池","月卡","日卡","生日","自選","劇情"];
+var NAME = {混池:"混池",月卡:"單人月卡",日卡:"日冕日卡",生日:"生日",自選:"自選五星",劇情:"劇情／免費五星"};
 var WD = ["日","一","二","三","四","五","六"];
 
 /* ============ 日期工具（全部使用系統本機日期） ============ */
 function pad(n){return (n<10?"0":"")+n}
 function ymd(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
 function parse(s){var a=s.split("-");return new Date(+a[0],+a[1]-1,+a[2])}
-function addDays(s,n){var d=parse(s);d.setDate(d.getDate()+n);return ymd(d)}
 function todayStr(){return ymd(new Date())}
 function md(s){var a=s.split("-");return (+a[1])+"/"+(+a[2])}
 function fmtFull(s){var d=parse(s);return d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+"（週"+WD[d.getDay()]+"）"}
 function daysBetween(a,b){return Math.round((parse(b)-parse(a))/86400000)}
 
 /* ============ 狀態 ============ */
-var state={view:"month",y:0,m:0,sel:null,base:EMBEDDED.pools.slice(),updated:EMBEDDED.updated,source:"內建資料",
-  show:{新卡:true,復刻:true,預測:true},kinds:{混池:true,月卡:true,日卡:true,生日:true,自選:true}};
+var state={view:"month",y:0,m:0,sel:null,base:EMBEDDED.pools.slice(),pvs:(EMBEDDED.pvs||[]).slice(),updated:EMBEDDED.updated,source:"內建資料",
+  show:{新卡:true,復刻:true,預測:true,其他PV:true},kinds:{混池:true,月卡:true,日卡:true,生日:true,自選:true,劇情:true}};
 var T=todayStr();
 (function(){var d=new Date();state.y=d.getFullYear();state.m=d.getMonth();state.sel=T;
-  try{var b=JSON.parse(localStorage.getItem(BASE_KEY)||"null");
-    if(b&&Array.isArray(b.pools)&&(b.updated||"")>=EMBEDDED.updated){state.base=b.pools;state.updated=b.updated;state.source="上次選取的 pools.json（存在這個瀏覽器）"}}catch(e){}
+  try{var b=ADMIN?JSON.parse(localStorage.getItem(BASE_KEY)||"null"):null;
+    if(b&&Array.isArray(b.pools)&&(b.updated||"")>=EMBEDDED.updated){applyData(b);state.updated=b.updated;state.source="上次選取的 pools.json（存在這個瀏覽器）"}}catch(e){}
 })();
 
-function extras(){try{return JSON.parse(localStorage.getItem(EXTRA_KEY)||"[]")}catch(e){return []}}
+/* 劇情活動與 PV 一旦收錄就一直存在：即使 pools.json 還沒有，也會從內建資料補上 */
+function applyData(j){
+  var pools=(j.pools||[]).slice(), pvs=Array.isArray(j.pvs)?j.pvs.slice():[];
+  (EMBEDDED.pools||[]).forEach(function(e){
+    if(e.kind!=="劇情") return;
+    if(!pools.some(function(p){return p.kind==="劇情"&&p.start===e.start})) pools.push(e);
+  });
+  (EMBEDDED.pvs||[]).forEach(function(e){
+    if(!pvs.some(function(p){return p.id===e.id||p.url===e.url})) pvs.push(e);
+  });
+  state.base=pools;state.pvs=pvs;
+}
+function extras(){if(!ADMIN)return [];try{return JSON.parse(localStorage.getItem(EXTRA_KEY)||"[]")}catch(e){return []}}
 function saveExtras(a){try{localStorage.setItem(EXTRA_KEY,JSON.stringify(a))}catch(e){}}
 
-/* ============ 預測自動失效 ============ */
+/* ============ 資料整理 ============ */
 function allPools(){
   var list=state.base.concat(extras().map(function(x){x.extra=true;return x}));
   var real=list.filter(function(p){return !p.pred});
@@ -197,14 +232,49 @@ function pvStatus(p){
   return T>=p.pv?{t:"PV 已發布",c:"pvok"}:{t:"PV 預定",c:""};
 }
 
-/* ============ 元件 ============ */
-function pvHref(p){return p.pvUrl||(YT_CH+"/search?query="+encodeURIComponent(p.name))}
-function pvLink(txt,p,cls){
-  var a=el("a",cls||"pvl",txt);a.href=pvHref(p);a.target="_blank";a.rel="noopener noreferrer";
-  a.title=p.pvUrl?"開啟官方 PV（YouTube）":"到官方頻道搜尋「"+p.name+"」";
-  a.onclick=function(e){e.stopPropagation();e.preventDefault();window.open(a.href,"_blank","noopener,noreferrer");};return a;
+/* ============ 其他官方 PV（沒有對應卡池或劇情活動的影片） ============ */
+function allVids(){
+  if(!state.show.其他PV) return [];
+  return state.pvs.filter(function(v){return v&&v.date&&/^https?:\/\//i.test(v.url||"")});
 }
-function pvItem(prefix,p,txt){var d=el("div","item");d.appendChild(document.createTextNode(prefix));d.appendChild(pvLink(txt,p));return d}
+function vidsOn(day){return allVids().filter(function(v){return v.date===day})}
+function shortTitle(t){
+  t=(t||"").replace(/^[^\u4e00-\u9fffA-Za-z0-9「《]+/,"").replace(/\s+/g," ");
+  return t.length>14?t.slice(0,14)+"…":t;
+}
+/* ============ PV 連結（一個池可有多支影片） ============ */
+function pvUrls(p){
+  var u=[];
+  if(Array.isArray(p.pvUrls)) u=p.pvUrls.slice();
+  if(p.pvUrl&&u.indexOf(p.pvUrl)<0) u.unshift(p.pvUrl);
+  return u.filter(function(x){return typeof x==="string"&&/^https?:\/\//i.test(x)});
+}
+function searchUrl(p){return YT_CH+"/search?query="+encodeURIComponent(p.name)}
+function openNew(a){
+  a.target="_blank";a.rel="noopener noreferrer";
+  a.addEventListener("click",function(e){
+    e.stopPropagation();
+    var w=null;try{w=window.open(a.href,"_blank")}catch(x){}
+    if(w){try{w.opener=null}catch(x){}e.preventDefault()}   // 成功另開分頁；被擋時退回 target=_blank 的預設行為
+  });
+  return a;
+}
+function mkLink(txt,href,cls,title){var a=el("a",cls,txt);a.href=href;if(title)a.title=title;return openNew(a)}
+/* 一個池的所有 PV 連結：有影片網址就列出「PV 1／PV 2…」，沒有就給「搜尋」 */
+function pvLinks(p,prefix){
+  var box=el("span","pvs"),u=pvUrls(p);
+  if(prefix) box.appendChild(document.createTextNode(prefix));
+  if(u.length){
+    u.forEach(function(h,i){
+      box.appendChild(mkLink(u.length>1?"▶ PV "+(i+1):"▶ PV",h,"pvb","開啟官方 PV（YouTube）"+(u.length>1?" 第 "+(i+1)+" 支":"")));
+    });
+  }else{
+    box.appendChild(mkLink("🔍 搜尋 PV",searchUrl(p),"pvb s","尚無影片連結，到官方頻道搜尋「"+p.name+"」"));
+  }
+  return box;
+}
+
+/* ============ 元件 ============ */
 function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 
 function renderFilters(){
@@ -212,10 +282,10 @@ function renderFilters(){
   KINDS.forEach(function(k){
     var c=el("span","chip"+(state.kinds[k]?"":" off"),NAME[k]);c.style.background="var(--n-"+k+")";
     c.onclick=function(){state.kinds[k]=!state.kinds[k];render()};f.appendChild(c)});
-  [["新卡","新卡"],["復刻","↻復刻"],["預測","預測"]].forEach(function(x){
+  [["新卡","新卡"],["復刻","↻復刻"],["預測","預測"],["其他PV","其他PV"]].forEach(function(x){
     var c=el("span","chip ghost"+(state.show[x[0]]?"":" off"),x[1]);
     c.onclick=function(){state.show[x[0]]=!state.show[x[0]];render()};f.appendChild(c)});
-  var tip=el("span","muted","　▶＝PV 首播日（點擊開啟 YouTube；🔍＝尚無影片連結，改為搜尋官方頻道）　粉框＝今天　虛線＝預測");f.appendChild(tip);
+  f.appendChild(el("span","muted","　▶＝PV 首播日（點粉紅條開影片；同日多支請點右側面板）　橘色＝劇情／免費五星活動　粉框＝今天　虛線＝預測"));
 }
 
 function renderMonth(list){
@@ -228,9 +298,19 @@ function renderMonth(list){
     var d=new Date(start);d.setDate(start.getDate()+i);var s=ymd(d);
     var c=el("div","cell"+(d.getMonth()!==state.m?" out":"")+(s===T?" today":"")+(s===state.sel?" sel":""));
     c.appendChild(el("div","dn",String(d.getDate())));
-    var act=onDay(list,s),pvs=pvOn(list,s);
-    pvs.slice(0,1).forEach(function(p){var e=pvLink((p.pvUrl?"▶ PV ":"▶ PV 🔍")+p.name,p,"ev pv");e.title=(p.pvUrl?"開啟官方 PV：":"到官方頻道搜尋：")+p.name+(p.pvTime?"（首播 "+p.pvTime+"）":"");c.appendChild(e)});
-    var room=3-Math.min(pvs.length,1);
+    var act=onDay(list,s),pvs=pvOn(list,s),vids=vidsOn(s),n=pvs.length+vids.length;
+    if(n){
+      var e;
+      if(n===1){
+        if(pvs.length){
+          var p=pvs[0],u=pvUrls(p);
+          if(u.length===1) e=mkLink("▶ PV "+p.name,u[0],"ev pv","開啟官方 PV：「"+p.name+"」"+(p.pvTime?"（首播 "+p.pvTime+"）":""));
+          else{e=el("span","ev pv","▶ PV "+p.name+(u.length>1?" ＋":""));e.title=(u.length>1?p.name+" 有 "+u.length+" 支 PV":"尚無影片連結")+"，點選後在右側面板開啟"}
+        }else{var v0=vids[0];e=mkLink("▶ "+shortTitle(v0.title),v0.url,"ev pv",v0.title)}
+      }else{e=el("span","ev pv","▶ PV ×"+n);e.title="同日有 "+n+" 支 PV，點選後在右側面板開啟"}
+      c.appendChild(e);
+    }
+    var room=3-(n?1:0);
     act.slice(0,room).forEach(function(p){
       var e=el("span","ev"+(p.pred?" pred":""),label(p));e.style.background=bg(p);e.title=p.name+"　"+md(p.start)+"–"+md(p.end);c.appendChild(e)});
     if(act.length>room) c.appendChild(el("div","more","+"+(act.length-room)));
@@ -250,7 +330,7 @@ function renderYear(list){
     var n=new Date(state.y,m+1,0).getDate();
     for(var d=1;d<=n;d++){
       var s=state.y+"-"+pad(m+1)+"-"+pad(d);var act=onDay(list,s);
-      var c=el("div","md"+(s===T?" today":"")+(pvOn(list,s).length?" pv":""),String(d));
+      var c=el("div","md"+(s===T?" today":"")+((pvOn(list,s).length||vidsOn(s).length)?" pv":""),String(d));
       if(act.length){c.style.background=bg(act[0]);if(act[0].pred)c.style.outline="1px dashed #8d86a3"}
       g.appendChild(c)}
     box.appendChild(g);
@@ -262,33 +342,54 @@ function renderList(list){
   var main=document.getElementById("main");main.textContent="";
   var yl=list.filter(function(p){return p.start.slice(0,4)==String(state.y)||p.end.slice(0,4)==String(state.y)})
     .sort(function(a,b){return a.start.localeCompare(b.start)||a.rerun-b.rerun});
-  var t=el("table");var h=el("tr");["開池","截止","卡池","類型","角色","PV 首播","狀態"].forEach(function(x){h.appendChild(el("th",null,x))});t.appendChild(h);
+  var t=el("table");var h=el("tr");["開池","截止","卡池","類型","角色","PV 首播","PV 連結","狀態"].forEach(function(x){h.appendChild(el("th",null,x))});t.appendChild(h);
   yl.forEach(function(p){
     var r=el("tr",(T>=p.start&&T<=p.end&&!p.pred)?"cur":"");
-    var nm=el("td");var sw=el("span","sw"+(p.pred?" pred":""));sw.style.display="inline-block";sw.style.marginRight="4px";sw.style.background=p.pred?"#fff":bg(p);nm.appendChild(sw);nm.appendChild(document.createTextNode((p.rerun?"↻ ":"")+p.name+(p.pending?"（待確認）":"")));
-    var st=status(p),pv=pvStatus(p);
-    [md(p.start),md(p.end)].forEach(function(x){r.appendChild(el("td",null,x))});r.appendChild(nm);
+    var nm=el("td");var sw=el("span","sw"+(p.pred?" pred":""));sw.style.display="inline-block";sw.style.marginRight="4px";sw.style.background=p.pred?"#fff":bg(p);nm.appendChild(sw);
+    nm.appendChild(document.createTextNode((p.rerun?"↻ ":"")+p.name+(p.pending?"（待確認）":"")));
+    var st=status(p);
+    r.appendChild(el("td",null,md(p.start)));r.appendChild(el("td",null,md(p.end)+(p.endEstimated?"？":"")));r.appendChild(nm);
     r.appendChild(el("td",null,NAME[p.kind]));r.appendChild(el("td",null,p.chars||"—"));
-    var pvTd=el("td");
-    if(p.pv){pvTd.appendChild(pvLink((p.pvUrl?"▶ ":"🔍 ")+md(p.pv)+(p.pvTime?" "+p.pvTime:""),p))}
-    else if(!p.pred){pvTd.appendChild(pvLink("🔍 搜尋",p))}
-    else pvTd.appendChild(document.createTextNode("—"));
-    r.appendChild(pvTd);
+    r.appendChild(el("td",null,p.pv?md(p.pv)+(p.pvTime?" "+p.pvTime:""):"—"));
+    var lk=el("td");if(p.pred){lk.appendChild(document.createTextNode("—"))}else{lk.appendChild(pvLinks(p))}r.appendChild(lk);
     var s=el("td");s.appendChild(el("span","tag "+st.c,st.t));r.appendChild(s);t.appendChild(r)});
   main.appendChild(t);
+  var vl=allVids().filter(function(v){return v.date.slice(0,4)===String(state.y)}).sort(function(a,b){return (a.date+(a.time||"")).localeCompare(b.date+(b.time||""))});
+  if(vl.length){
+    main.appendChild(el("h3",null,state.y+" 年　其他官方 PV（"+vl.length+" 支）"));
+    var t2=el("table"),h2=el("tr");["首播","類別","標題","連結"].forEach(function(x){h2.appendChild(el("th",null,x))});t2.appendChild(h2);
+    vl.forEach(function(v){
+      var r=el("tr");r.appendChild(el("td",null,md(v.date)+(v.time?" "+v.time:"")));r.appendChild(el("td",null,v.cat||"其他"));
+      r.appendChild(el("td",null,v.title));var lk=el("td");lk.appendChild(mkLink("▶ PV",v.url,"pvb","開啟官方 PV（YouTube）"));r.appendChild(lk);t2.appendChild(r)});
+    main.appendChild(t2);
+  }
 }
 
 function item(p,extra){
   var d=el("div","item");var sw=el("span","sw"+(p.pred?" pred":""));if(!p.pred)sw.style.background=bg(p);d.appendChild(sw);
-  var b=el("div");var st=status(p);
-  var l=el("div");l.appendChild(el("b",null,(p.rerun?"↻ ":"")+p.name));l.appendChild(el("span","tag",NAME[p.kind]));if(p.pending)l.appendChild(el("span","tag pred","待確認"));
+  var b=el("div","bd");var st=status(p);
+  var l=el("div");l.appendChild(el("b",null,(p.rerun?"↻ ":"")+p.name));l.appendChild(el("span","tag",NAME[p.kind]));
+  if(p.pending)l.appendChild(el("span","tag pred","待確認"));
   var pvs=pvStatus(p);if(pvs)l.appendChild(el("span","tag "+pvs.c,pvs.t));
   b.appendChild(l);
-  b.appendChild(el("div","muted",(p.chars?p.chars+"　":"")+md(p.start)+"–"+md(p.end)+"　"+st.t+(p.pv?"　PV "+md(p.pv)+(p.pvTime?" "+p.pvTime:""):"")));
+  b.appendChild(el("div","muted",(p.chars?p.chars+"　":"")+md(p.start)+"–"+md(p.end)+(p.endEstimated?"（結束日推估）":"")+"　"+st.t+(p.pv?"　PV "+md(p.pv)+(p.pvTime?" "+p.pvTime:""):"")+((p.pvCn&&p.pvCn!==p.pv)?"（簡中服 "+md(p.pvCn)+"）":"")));
+  if(!p.pred&&(p.pv||pvUrls(p).length)){var w=el("div");w.appendChild(pvLinks(p));b.appendChild(w)}
+  if(p.note)b.appendChild(el("div","muted",p.note));
   if(extra&&p.extra){var x=el("button",null,"刪除");x.onclick=function(){var a=extras().filter(function(e){return e.id!==p.id});saveExtras(a);render()};b.appendChild(x)}
   d.appendChild(b);return d;
 }
 
+function pvRow(prefix,p,suffix){
+  var d=el("div","item");var b=el("div","bd");
+  b.appendChild(document.createTextNode(prefix+p.name+(suffix||"")+"　"));
+  b.appendChild(pvLinks(p));d.appendChild(b);return d;
+}
+
+function vidRow(prefix,v){
+  var d=el("div","item");var b=el("div","bd");
+  b.appendChild(document.createTextNode(prefix+shortTitle(v.title)+"　"));
+  b.appendChild(mkLink("▶ PV",v.url,"pvb s",v.title));d.appendChild(b);return d;
+}
 function renderSide(list){
   var s=document.getElementById("side");s.textContent="";
   var all=allPools();
@@ -296,7 +397,8 @@ function renderSide(list){
   var now=onDay(all.filter(function(p){return !p.pred}),T);
   if(!now.length) sec.appendChild(el("div","muted","目前沒有限定五星池"));
   now.forEach(function(p){sec.appendChild(item(p))});
-  var pvt=pvOn(all,T);pvt.forEach(function(p){sec.appendChild(pvItem("▶ 今天首播：",p,p.name+" PV"))});
+  pvOn(all,T).forEach(function(p){sec.appendChild(pvRow("▶ 今天首播：",p))});
+  vidsOn(T).forEach(function(v){sec.appendChild(vidRow("▶ 今天首播：",v))});
   s.appendChild(sec);
 
   var up=all.filter(function(p){return p.start>T}).sort(function(a,b){return a.start.localeCompare(b.start)}).slice(0,4);
@@ -304,26 +406,29 @@ function renderSide(list){
   if(!up.length) sec2.appendChild(el("div","muted","資料中沒有後續排期"));
   up.forEach(function(p){sec2.appendChild(item(p))});s.appendChild(sec2);
 
-  var pvl=all.filter(function(p){return p.pv}).sort(function(a,b){return b.pv.localeCompare(a.pv)});
-  var pub=pvl.filter(function(p){return p.pv<=T}).slice(0,3),sch=pvl.filter(function(p){return p.pv>T}).reverse();
+  var evs=all.filter(function(p){return p.pv&&!p.pred}).map(function(p){return {d:p.pv,t:p.pvTime||"",p:p}})
+    .concat(allVids().map(function(v){return {d:v.date,t:v.time||"",v:v}}));
+  evs.sort(function(a,b){return (b.d+b.t).localeCompare(a.d+a.t)});
+  var pub=evs.filter(function(e){return e.d<=T}).slice(0,5),sch=evs.filter(function(e){return e.d>T}).reverse();
   var sec3=el("section");sec3.appendChild(el("h3",null,"PV 動態"));
-  sch.forEach(function(p){sec3.appendChild(pvItem("⏳ "+md(p.pv)+" 預定　",p,p.name))});
-  pub.forEach(function(p){sec3.appendChild(pvItem("▶ "+md(p.pv)+(p.pvTime?" "+p.pvTime:"")+"　",p,p.name+(p.rerun?"（復刻）":"")))});
+  function row(e,pre){return e.p?pvRow(pre,e.p,e.p.rerun?"（復刻）":""):vidRow(pre,e.v)}
+  sch.forEach(function(e){sec3.appendChild(row(e,"⏳ "+md(e.d)+" 預定　"))});
+  pub.forEach(function(e){sec3.appendChild(row(e,"▶ "+md(e.d)+(e.t?" "+e.t:"")+"　"))});
   s.appendChild(sec3);
 
   var sec4=el("section");sec4.appendChild(el("h3",null,"選取日　"+fmtFull(state.sel)));
   var sel=onDay(all,state.sel);if(!sel.length)sec4.appendChild(el("div","muted","這天沒有限定五星池"));
   sel.forEach(function(p){sec4.appendChild(item(p,true))});
-  pvOn(all,state.sel).forEach(function(p){sec4.appendChild(pvItem("▶ PV 首播"+(p.pvTime?" "+p.pvTime:"")+"：",p,p.name))});
+  pvOn(all,state.sel).forEach(function(p){sec4.appendChild(pvRow("▶ PV 首播"+(p.pvTime?" "+p.pvTime:"")+"：",p))});
+  vidsOn(state.sel).forEach(function(v){sec4.appendChild(vidRow("▶ "+(v.time?v.time+" ":"")+"["+(v.cat||"其他")+"] ",v))});
   s.appendChild(sec4);
 }
 
 function render(){
   T=todayStr();
-  var b=document.getElementById("todayBadge");b.textContent="今天 "+fmtFull(T);
+  document.getElementById("todayBadge").textContent="今天 "+fmtFull(T);
   var list=visible();
-  var title=document.getElementById("title");
-  title.textContent=state.view==="month"?state.y+" 年 "+(state.m+1)+" 月":state.y+" 年";
+  document.getElementById("title").textContent=state.view==="month"?state.y+" 年 "+(state.m+1)+" 月":state.y+" 年";
   Array.prototype.forEach.call(document.querySelectorAll("#views button"),function(x){x.classList.toggle("on",x.dataset.v===state.view)});
   renderFilters();
   if(state.view==="month")renderMonth(list);else if(state.view==="year")renderYear(list);else renderList(list);
@@ -345,13 +450,19 @@ Array.prototype.forEach.call(document.querySelectorAll("#views button"),function
 
 /* ============ 新增／補 PV ============ */
 var dlg=document.getElementById("dlg"),form=document.getElementById("form");
+if(ADMIN){document.getElementById("adminTools").hidden=false;}
+else{dlg.parentNode.removeChild(dlg);}
+if(ADMIN){
 document.getElementById("addBtn").onclick=function(){form.reset();if(typeof dlg.showModal==="function")dlg.showModal();else dlg.setAttribute("open","")};
 document.getElementById("cancel").onclick=function(){dlg.close?dlg.close():dlg.removeAttribute("open")};
 document.getElementById("save").onclick=function(e){
   e.preventDefault();
   if(!form.reportValidity())return;
-  var f=new FormData(form);var o={name:f.get("name"),kind:f.get("kind"),chars:f.get("chars")||"",rerun:!!f.get("rerun"),
+  var f=new FormData(form);
+  var urls=(f.get("pvUrl")||"").split(/\s+/).filter(function(x){return /^https?:\/\//i.test(x)});
+  var o={name:f.get("name"),kind:f.get("kind"),chars:f.get("chars")||"",rerun:!!f.get("rerun"),
     start:f.get("start"),end:f.get("end"),pv:f.get("pv")||null,pvTime:f.get("pvTime")||null,pred:!!f.get("pred")};
+  if(urls.length){o.pvUrl=urls[0];if(urls.length>1)o.pvUrls=urls}
   if(o.end<o.start){alert("截止日不能早於開池日");return}
   o.id="x-"+Date.now();var a=extras();a.push(o);saveExtras(a);
   dlg.close?dlg.close():dlg.removeAttribute("open");render();
@@ -360,24 +471,27 @@ document.getElementById("exportBtn").onclick=function(){
   var blob=new Blob([JSON.stringify({updated:T,pools:extras()},null,1)],{type:"application/json"});
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my_pools.json";a.click();
 };
+}
 
 /* ============ 載入資料（線上 JSON 優先，失敗用內建） ============ */
 function load(){
-  if(!window.fetch||location.protocol==="file:"){state.source="內建資料（以檔案方式開啟，無法自動更新；放到網站或 SharePoint 後會抓 pools.json）";render();return}
+  if(!window.fetch||location.protocol==="file:"){state.source="內建資料（以檔案方式開啟，無法自動更新）";render();return}
   fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
   .then(function(j){if(!j||!Array.isArray(j.pools))throw new Error("format");
-    state.base=j.pools;state.updated=j.updated||"未標示";state.source="線上 "+DATA_URL;render()})
-  .catch(function(err){state.source=state.source.replace(/（.*$/,"")+"（自動讀取 "+DATA_URL+" 失敗："+((err&&err.message)||err)+"。可按「選取 pools.json」手動更新）";render()});
+    applyData(j);state.updated=j.updated||"未標示";state.source="線上 "+DATA_URL;render()})
+  .catch(function(err){state.source=state.source.replace(/（.*$/,"")+"（自動讀取 "+DATA_URL+" 失敗"+(ADMIN?"："+((err&&err.message)||err)+"。可按「選取 pools.json」手動更新":"，目前顯示內建資料")+"）";render()});
 }
+if(ADMIN){
 document.getElementById("reload").onclick=load;
 document.getElementById("pick").onclick=function(){document.getElementById("file").click()};
 document.getElementById("file").onchange=function(){
   var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();
   r.onload=function(){try{var j=JSON.parse(r.result);if(!j||!Array.isArray(j.pools))throw new Error("格式不符");
-    state.base=j.pools;state.updated=j.updated||"未標示";state.source="手動選取的 "+f.name+"（存在這個瀏覽器）";
+    applyData(j);state.updated=j.updated||"未標示";state.source="手動選取的 "+f.name+"（存在這個瀏覽器）";
     try{localStorage.setItem(BASE_KEY,JSON.stringify(j))}catch(e){}render()}catch(e){alert("讀取失敗："+e.message)}};
   r.readAsText(f,"utf-8");this.value="";
 };
+}
 load();
 setInterval(load,REFRESH_MS);
 
