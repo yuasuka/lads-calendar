@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27",
+ "updated": "2026-10-29",
  "pools": [
   {
    "name": "綿綿長夢",
@@ -428,10 +428,13 @@
    "chars": "沈星回",
    "start": "2025-05-29",
    "end": "2025-06-07",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-05-26",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-05-29-35"
+   "id": "2025-05-29-35",
+   "pvUrl": "https://www.youtube.com/watch?v=DwyiBOkMKbU",
+   "ytDate": "2025-05-26",
+   "pvSource": "youtube"
   },
   {
    "name": "無可逃逸夜",
@@ -440,10 +443,13 @@
    "chars": "夏以晝",
    "start": "2025-06-08",
    "end": "2025-06-15",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-06-05",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-06-08-36"
+   "id": "2025-06-08-36",
+   "pvUrl": "https://www.youtube.com/watch?v=pmQlYsy722o",
+   "ytDate": "2025-06-05",
+   "pvSource": "youtube"
   },
   {
    "name": "當海湮沒於海",
@@ -464,10 +470,13 @@
    "chars": "",
    "start": "2025-07-03",
    "end": "2025-07-22",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-06-27",
+   "pvTime": "19:54",
    "pred": false,
-   "id": "2025-07-03-38"
+   "id": "2025-07-03-38",
+   "pvUrl": "https://www.youtube.com/watch?v=rCWpneDPkLk",
+   "ytDate": "2025-06-27",
+   "pvSource": "youtube"
   },
   {
    "name": "沉墜的冠冕",
@@ -476,10 +485,13 @@
    "chars": "沈星回",
    "start": "2025-07-25",
    "end": "2025-08-08",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-07-22",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-07-25-39"
+   "id": "2025-07-25-39",
+   "pvUrl": "https://www.youtube.com/watch?v=kRUL25zDw2o",
+   "ytDate": "2025-07-22",
+   "pvSource": "youtube"
   },
   {
    "name": "盛夏與你與海風",
@@ -488,10 +500,13 @@
    "chars": "",
    "start": "2025-08-12",
    "end": "2025-08-31",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-08-08",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-08-12-40"
+   "id": "2025-08-12-40",
+   "pvUrl": "https://www.youtube.com/watch?v=CnzFL25p8Gg",
+   "ytDate": "2025-08-08",
+   "pvSource": "youtube"
   },
   {
    "name": "以我寄黎明",
@@ -500,10 +515,13 @@
    "chars": "黎深",
    "start": "2025-08-31",
    "end": "2025-09-07",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-08-28",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-08-31-41"
+   "id": "2025-08-31-41",
+   "pvUrl": "https://www.youtube.com/watch?v=denO71S3VBc",
+   "ytDate": "2025-08-28",
+   "pvSource": "youtube"
   },
   {
    "name": "熱意揣度",
@@ -512,10 +530,13 @@
    "chars": "秦徹",
    "start": "2025-09-09",
    "end": "2025-09-18",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-09-06",
+   "pvTime": "11:01",
    "pred": false,
-   "id": "2025-09-09-42"
+   "id": "2025-09-09-42",
+   "pvUrl": "https://www.youtube.com/watch?v=jq0XEojZ-pc",
+   "ytDate": "2025-09-06",
+   "pvSource": "youtube"
   },
   {
    "name": "無人知曉時",
@@ -524,10 +545,13 @@
    "chars": "",
    "start": "2025-09-19",
    "end": "2025-09-26",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-09-17",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-09-19-43"
+   "id": "2025-09-19-43",
+   "pvUrl": "https://www.youtube.com/watch?v=6Rt7rPMAmfg",
+   "ytDate": "2025-09-17",
+   "pvSource": "youtube"
   },
   {
    "name": "時與世的邊緣",
@@ -536,10 +560,13 @@
    "chars": "黎深",
    "start": "2025-09-25",
    "end": "2025-10-09",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-09-22",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-09-25-44"
+   "id": "2025-09-25-44",
+   "pvUrl": "https://www.youtube.com/watch?v=NIM9K5IWldI",
+   "ytDate": "2025-09-22",
+   "pvSource": "youtube"
   },
   {
    "name": "來自星軌間",
@@ -548,10 +575,13 @@
    "chars": "沈星回",
    "start": "2025-10-11",
    "end": "2025-10-18",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-10-08",
+   "pvTime": "11:01",
    "pred": false,
-   "id": "2025-10-11-45"
+   "id": "2025-10-11-45",
+   "pvUrl": "https://www.youtube.com/watch?v=YJ_Spjzov1s",
+   "ytDate": "2025-10-08",
+   "pvSource": "youtube"
   },
   {
    "name": "龍影隕落處",
@@ -560,10 +590,13 @@
    "chars": "秦徹",
    "start": "2025-10-20",
    "end": "2025-10-27",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-10-18",
+   "pvTime": "11:11",
    "pred": false,
-   "id": "2025-10-20-46"
+   "id": "2025-10-20-46",
+   "pvUrl": "https://www.youtube.com/watch?v=fayTwxB4b8w",
+   "ytDate": "2025-10-18",
+   "pvSource": "youtube"
   },
   {
    "name": "直到心跳沸騰",
@@ -575,7 +608,9 @@
    "pv": "2025-10-26",
    "pvTime": "20:05",
    "pred": false,
-   "id": "2025-10-29-47"
+   "id": "2025-10-29-47",
+   "pvUrl": "https://www.youtube.com/watch?v=sKjgTuDhZhU",
+   "ytDate": "2025-10-27"
   },
   {
    "name": "綿綿長夢",
@@ -587,7 +622,9 @@
    "pv": "2025-11-10",
    "pvTime": "19:00",
    "pred": false,
-   "id": "2025-11-13-48"
+   "id": "2025-11-13-48",
+   "pvUrl": "https://www.youtube.com/watch?v=iZ6f1dFQzaQ",
+   "ytDate": "2025-11-11"
   },
   {
    "name": "甜野極馳",
@@ -596,10 +633,13 @@
    "chars": "祁煜",
    "start": "2025-11-21",
    "end": "2025-11-30",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-11-19",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-11-21-49"
+   "id": "2025-11-21-49",
+   "pvUrl": "https://www.youtube.com/watch?v=dtpXctqHy44",
+   "ytDate": "2025-11-19",
+   "pvSource": "youtube"
   },
   {
    "name": "銀翼安魂地",
@@ -608,10 +648,13 @@
    "chars": "秦徹",
    "start": "2025-12-02",
    "end": "2025-12-16",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-11-29",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2025-12-02-50"
+   "id": "2025-12-02-50",
+   "pvUrl": "https://www.youtube.com/watch?v=CaCktca1rWY",
+   "ytDate": "2025-11-29",
+   "pvSource": "youtube"
   },
   {
    "name": "晚空微瀾",
@@ -620,10 +663,13 @@
    "chars": "祁煜",
    "start": "2025-12-11",
    "end": "2025-12-18",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-12-09",
+   "pvTime": "11:31",
    "pred": false,
-   "id": "2025-12-11-51"
+   "id": "2025-12-11-51",
+   "pvUrl": "https://www.youtube.com/watch?v=6bHzcE0kchc",
+   "ytDate": "2025-12-09",
+   "pvSource": "youtube"
   },
   {
    "name": "慵懶共謀",
@@ -632,10 +678,13 @@
    "chars": "夏以晝",
    "start": "2025-12-18",
    "end": "2025-12-27",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2025-12-16",
+   "pvTime": "11:01",
    "pred": false,
-   "id": "2025-12-18-52"
+   "id": "2025-12-18-52",
+   "pvUrl": "https://www.youtube.com/watch?v=7UH_YLicr1E",
+   "ytDate": "2025-12-16",
+   "pvSource": "youtube"
   },
   {
    "name": "臨危",
@@ -647,7 +696,9 @@
    "pv": "2025-12-21",
    "pvTime": "19:01",
    "pred": false,
-   "id": "2025-12-24-53"
+   "id": "2025-12-24-53",
+   "pvUrl": "https://www.youtube.com/watch?v=d4Qa8iXOSic",
+   "ytDate": "2025-12-22"
   },
   {
    "name": "愛，宇宙，詩王座",
@@ -659,7 +710,9 @@
    "pv": "2025-12-26",
    "pvTime": null,
    "pred": false,
-   "id": "2025-12-31-54"
+   "id": "2025-12-31-54",
+   "pvUrl": "https://www.youtube.com/watch?v=sXF0klmVbWE",
+   "ytDate": "2025-12-26"
   },
   {
    "name": "竊竊私吻",
@@ -671,7 +724,9 @@
    "pv": "2026-01-21",
    "pvTime": null,
    "pred": false,
-   "id": "2026-01-23-55"
+   "id": "2026-01-23-55",
+   "pvUrl": "https://www.youtube.com/watch?v=7F-eMfI53Ic",
+   "ytDate": "2026-01-21"
   },
   {
    "name": "當宇宙陷落",
@@ -680,10 +735,13 @@
    "chars": "夏以晝",
    "start": "2026-02-02",
    "end": "2026-02-09",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-01-31",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2026-02-02-56"
+   "id": "2026-02-02-56",
+   "pvUrl": "https://www.youtube.com/watch?v=740xsMH7WFs",
+   "ytDate": "2026-01-31",
+   "pvSource": "youtube"
   },
   {
    "name": "人間繾綣意",
@@ -695,7 +753,9 @@
    "pv": "2026-02-05",
    "pvTime": null,
    "pred": false,
-   "id": "2026-02-10-57"
+   "id": "2026-02-10-57",
+   "pvUrl": "https://www.youtube.com/watch?v=PsL0MqefAmw",
+   "ytDate": "2026-02-04"
   },
   {
    "name": "步步傾你",
@@ -728,10 +788,13 @@
    "chars": "沈星回",
    "start": "2026-03-09",
    "end": "2026-03-18",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-03-07",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2026-03-09-60"
+   "id": "2026-03-09-60",
+   "pvUrl": "https://www.youtube.com/watch?v=BOPM5nLzLBw",
+   "ytDate": "2026-03-07",
+   "pvSource": "youtube"
   },
   {
    "name": "眸光映照處",
@@ -743,7 +806,9 @@
    "pv": "2026-03-17",
    "pvTime": "20:03",
    "pred": false,
-   "id": "2026-03-19-61"
+   "id": "2026-03-19-61",
+   "pvUrl": "https://www.youtube.com/watch?v=qUNAHAEcmVs",
+   "ytDate": "2026-03-18"
   },
   {
    "name": "萬鬼行絕",
@@ -752,10 +817,13 @@
    "chars": "夏以晝",
    "start": "2026-03-28",
    "end": "2026-04-11",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-03-25",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2026-03-28-62"
+   "id": "2026-03-28-62",
+   "pvUrl": "https://www.youtube.com/watch?v=rYzwMU0CeBs",
+   "ytDate": "2026-03-25",
+   "pvSource": "youtube"
   },
   {
    "name": "燎然升溫",
@@ -803,7 +871,9 @@
    "pv": "2026-04-20",
    "pvTime": "11:00",
    "pred": false,
-   "id": "2026-04-21-66"
+   "id": "2026-04-21-66",
+   "pvUrl": "https://www.youtube.com/watch?v=k10BJetbvKk",
+   "ytDate": "2026-04-20"
   },
   {
    "name": "渴慕與浮沉",
@@ -839,7 +909,9 @@
    "pv": "2026-05-12",
    "pvTime": "20:19",
    "pred": false,
-   "id": "2026-05-15-69"
+   "id": "2026-05-15-69",
+   "pvUrl": "https://www.youtube.com/watch?v=wRe4GrlN1_c",
+   "ytDate": "2026-05-13"
   },
   {
    "name": "愛貓及喵",
@@ -848,10 +920,13 @@
    "chars": "秦徹",
    "start": "2026-05-22",
    "end": "2026-05-31",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-05-19",
+   "pvTime": "11:02",
    "pred": false,
-   "id": "2026-05-22-70"
+   "id": "2026-05-22-70",
+   "pvUrl": "https://www.youtube.com/watch?v=Z-_2YbWMvGM",
+   "ytDate": "2026-05-19",
+   "pvSource": "youtube"
   },
   {
    "name": "雙影交疊時",
@@ -863,7 +938,9 @@
    "pv": "2026-05-28",
    "pvTime": "20:06",
    "pred": false,
-   "id": "2026-05-31-71"
+   "id": "2026-05-31-71",
+   "pvUrl": "https://www.youtube.com/watch?v=aktxMSq6FvM",
+   "ytDate": "2026-05-29"
   },
   {
    "name": "萬里皆予你",
@@ -872,10 +949,13 @@
    "chars": "夏以晝",
    "start": "2026-06-08",
    "end": "2026-06-15",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-06-06",
+   "pvTime": "11:01",
    "pred": false,
-   "id": "2026-06-08-72"
+   "id": "2026-06-08-72",
+   "pvUrl": "https://www.youtube.com/watch?v=mjrpuS-IMQc",
+   "ytDate": "2026-06-06",
+   "pvSource": "youtube"
   },
   {
    "name": "無可逃逸夜",
@@ -899,7 +979,9 @@
    "pv": "2026-06-13",
    "pvTime": "20:00",
    "pred": false,
-   "id": "2026-06-17-74"
+   "id": "2026-06-17-74",
+   "pvUrl": "https://www.youtube.com/watch?v=sgHfal8woy0",
+   "ytDate": "2026-06-14"
   },
   {
    "name": "日色初照",
@@ -923,7 +1005,9 @@
    "pv": "2026-06-29",
    "pvTime": "20:00",
    "pred": false,
-   "id": "2026-07-02-76"
+   "id": "2026-07-02-76",
+   "pvUrl": "https://www.youtube.com/watch?v=NUDj1fhOk9k",
+   "ytDate": "2026-06-30"
   },
   {
    "name": "耀色隨想",
@@ -956,10 +1040,13 @@
    "chars": "夏以晝",
    "start": "2026-08-05",
    "end": "2026-08-14",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-08-03",
+   "pvTime": "11:02",
    "pred": false,
-   "id": "2026-08-05-79"
+   "id": "2026-08-05-79",
+   "pvUrl": "https://www.youtube.com/watch?v=l9c5LywSBD4",
+   "ytDate": "2026-08-03",
+   "pvSource": "youtube"
   },
   {
    "name": "破陣子",
@@ -968,10 +1055,13 @@
    "chars": "祁煜",
    "start": "2026-08-17",
    "end": "2026-08-31",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-08-14",
+   "pvTime": "11:00",
    "pred": false,
-   "id": "2026-08-17-80"
+   "id": "2026-08-17-80",
+   "pvUrl": "https://www.youtube.com/watch?v=JRH8JmiM-7w",
+   "ytDate": "2026-08-14",
+   "pvSource": "youtube"
   },
   {
    "name": "不設防禁區",
@@ -983,7 +1073,9 @@
    "pv": "2026-08-22",
    "pvTime": "11:30",
    "pred": false,
-   "id": "2026-08-24-81"
+   "id": "2026-08-24-81",
+   "pvUrl": "https://www.youtube.com/watch?v=86afkxldD5A",
+   "ytDate": "2026-08-22"
   },
   {
    "name": "塵囂起時",
@@ -995,7 +1087,9 @@
    "pv": "2026-08-28",
    "pvTime": "11:30",
    "pred": false,
-   "id": "2026-08-31-82"
+   "id": "2026-08-31-82",
+   "pvUrl": "https://www.youtube.com/watch?v=GUF6ykgmIqE",
+   "ytDate": "2026-08-28"
   },
   {
    "name": "至盼如晤",
@@ -1016,10 +1110,13 @@
    "chars": "秦徹",
    "start": "2026-09-08",
    "end": "2026-09-15",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-09-06",
+   "pvTime": "11:01",
    "pred": false,
-   "id": "2026-09-08-84"
+   "id": "2026-09-08-84",
+   "pvUrl": "https://www.youtube.com/watch?v=jfi5Flilxpc",
+   "ytDate": "2026-09-06",
+   "pvSource": "youtube"
   },
   {
    "name": "如若午夜無眠",
@@ -1040,10 +1137,13 @@
    "chars": "祁煜",
    "start": "2026-10-03",
    "end": "2026-10-10",
-   "pv": null,
-   "pvTime": null,
+   "pv": "2026-10-02",
+   "pvTime": "11:07",
    "pred": false,
-   "id": "2026-10-03-86"
+   "id": "2026-10-03-86",
+   "pvUrl": "https://www.youtube.com/watch?v=pC7DxmCbpJA",
+   "ytDate": "2026-10-02",
+   "pvSource": "youtube"
   },
   {
    "name": "願得此瞬",
@@ -1055,7 +1155,9 @@
    "pv": "2026-10-07",
    "pvTime": null,
    "pred": false,
-   "id": "2026-10-11-87"
+   "id": "2026-10-11-87",
+   "pvUrl": "https://www.youtube.com/watch?v=AaEqB-ppIRE",
+   "ytDate": "2026-10-08"
   },
   {
    "name": "逢光續歲",
@@ -1091,7 +1193,9 @@
    "pv": "2026-10-25",
    "pvTime": "11:30",
    "pred": false,
-   "id": "2026-10-27-90"
+   "id": "2026-10-27-90",
+   "pvUrl": "https://www.youtube.com/watch?v=_rjrjUtd2C0",
+   "ytDate": "2026-10-25"
   },
   {
    "name": "新日卡",
